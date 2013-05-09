@@ -72,9 +72,9 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = '../../web_apps/promis';
+	$application_folder = '../../web_apps/help';
 
-	$webroot_folder = '../../web_roots/promis';
+	$webroot_folder = '../../web_roots/help';
 
 /*
  * --------------------------------------------------------------------
