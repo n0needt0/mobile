@@ -10,7 +10,8 @@ class mNew extends MY_Controller {
 
 	public function index()
 	{
-	    $data = array();
+	    $data = array('top'=>true);
+	    //process request
 		$this->load->view('mobile/mnew',$data);
 	}
 }

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title> mOutcomes </title>
+	<title> Helpdesk </title>
 
      <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,7 @@
 	<!-- Custom css -->
 	<link rel="stylesheet" href="/assets/mobile/css/custom.css" />
 
-	<!-- js libs--> -->
+	<!-- js libs-->
 	<script src="/assets/vendor/mobile/jquery-1.8.2-min.js"></script>
 	<script src="/assets/vendor/mobile/jquery.mobile-1.3.0.min.js"></script>
 	<script src="/assets/vendor/mobile/ios-orientationchange-fix.min.js"></script>
@@ -103,22 +103,14 @@
 <body>
 	<div data-role="page" id="page">
 		<div data-role="header">
-		      <h1>mOutcomes</h1>
-		<?php if(empty($top)){?>
-		      <div data-role="navbar">
-                <ul>
-                  <li><a href="/mhome">Home</a></li>
-                  <li><a href="#">Español</a></li>
-                </ul>
-             </div>
-        <?php } ?>
+		      <h1>Helpdesk</h1>
 		</div>
 
 		<div data-role="content">
 		 <?php echo $content; ?>
 		</div>
-		<div data-role="footer" data-theme="c">
-			<h1>&copy; <?php echo date("Y",time());?> - mOutcomes</h1>
+		<div data-role="footer" data-theme="a">
+			<h1>&copy; <?php echo date("Y",time());?> - Helppain.net</h1>
 		</div>
 
 	</div>

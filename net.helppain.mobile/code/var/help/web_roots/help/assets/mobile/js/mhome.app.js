@@ -51,9 +51,9 @@ console.log("here");
         try{
           		var pin = $('#pin').val();
 
-                if( ('Enter your PIN' == pin) || ('' == pin.trim()) )
+                if( ('Enter your Name' == pin) || ('' == pin.trim()) )
                 {
-                	alert("Please enter valid PIN.");
+                	alert("Please enter your Name.");
             	    return false;
                 }
                 
@@ -71,7 +71,7 @@ console.log("here");
           		
           		var pin = $(e.currentTarget).val();
 
-                if('Enter your PIN' == pin)
+                if('Enter your Name' == pin)
                 {
                 	$(e.currentTarget).val("");
                 }
