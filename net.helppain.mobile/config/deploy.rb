@@ -77,7 +77,7 @@ namespace :deploy do
 
   desc "Write current revision to "
   task :publish_revision do
-  run "content=`cat #{deploy_to}/current/REVISION`;ip=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`; sed -i \"s/MY_REVISION/$content-$ip/g\" #{deploy_to}/current/promis/code/var/promis/web_apps/promis/views/templates/main.php"
+  run "content=`cat #{deploy_to}/current/REVISION`;ip=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`; sed -i \"s/MY_REVISION/$content-$ip/g\" #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/views/templates/mobile.php"
   end
   
   desc "clean up old releases"
@@ -101,7 +101,7 @@ namespace :deploy do
   desc "Reload Apache"
   task :reload_apache do
     unless remote_file_exists?(apache_root)
-      sudo "ln -sf #{deploy_to}/current/net.helppain.mobile/code/var/promis #{apache_root}"
+      sudo "ln -sf #{deploy_to}/current/net.helppain.mobile/code/var/help #{apache_root}"
     end
     
     sudo "/etc/init.d/apache2 reload"
