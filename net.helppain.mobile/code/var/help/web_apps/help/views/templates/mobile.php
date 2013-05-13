@@ -110,11 +110,9 @@
 		 <?php echo $content; ?>
 		</div>
 		<div data-role="footer" data-theme="a">
-			<h1>&copy; <?php echo date("Y",time());?> - Helppain.net rMY_REVISION</h1>
+			<h1>&copy; <?php echo date("Y",time());?> - Helppain.net</h1>
 		</div>
-
 	</div>
-
-
+<!-- rMY_REVISION -->
 </body>
 </html>
