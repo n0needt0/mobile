@@ -87,21 +87,21 @@ namespace :deploy do
   
   desc "get correct config"
   task :get_correct_config do
-    run "mv #{deploy_to}/current/help/code/var/promis/web_apps/help/config/config.#{stage}.php #{deploy_to}/current/help/code/var/promis/web_apps/help/config/config.php"
+    run "mv #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/config.#{stage}.php #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/config.php"
     
-    run "mv #{deploy_to}/current/help/code/var/help/web_apps/help/config/constants.#{stage}.php #{deploy_to}/current/help/code/var/promis/web_apps/help/config/constants.php"
+    run "mv #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/constants.#{stage}.php #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/constants.php"
     
   end
   
   desc "get correct apache"
    task :get_correct_apache_conf do
-   sudo "mv #{deploy_to}/current/help/code/etc/apache2/sites-enabled/#{application_name}.#{stage} /etc/apache2/sites-enabled/#{application_name}"
+   sudo "mv #{deploy_to}/current/net.helppain.mobile/code/etc/apache2/sites-enabled/#{application_name}.#{stage} /etc/apache2/sites-enabled/#{application_name}"
   end
 
   desc "Reload Apache"
   task :reload_apache do
     unless remote_file_exists?(apache_root)
-      sudo "ln -sf #{deploy_to}/current/help/code/var/promis #{apache_root}"
+      sudo "ln -sf #{deploy_to}/current/net.helppain.mobile/code/var/promis #{apache_root}"
     end
     
     sudo "/etc/init.d/apache2 reload"
