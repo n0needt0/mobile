@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'help';
-$db['default']['password'] = 'help#1';
-$db['default']['database'] = 'help';
+$db['default']['username'] = 'trac';
+$db['default']['password'] = 'trac';
+$db['default']['database'] = 'itrac';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
