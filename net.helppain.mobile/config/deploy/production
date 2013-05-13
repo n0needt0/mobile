@@ -1,1 +1,1 @@
-server "promis.helppain.net", :web, :app
+server "trac.helppain.net", :web, :app
