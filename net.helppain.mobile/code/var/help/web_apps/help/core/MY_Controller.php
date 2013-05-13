@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller {
   {
       parent::__construct();
       Utils::log_message( LOG_NOTICE, Utils::curPageURL() );
-      $this->load->library('session');
+     // $this->load->library('session');
   }
 
   protected function set_template($template_name)
