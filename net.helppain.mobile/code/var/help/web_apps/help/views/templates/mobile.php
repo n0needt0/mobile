@@ -3,7 +3,9 @@
 <head>
 	<title> Helpdesk </title>
 
-     <meta charset="utf-8">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -46,6 +48,11 @@
 	<!-- List of JS libs we use -->
 
 	<script>
+    	$(document).ready( function () {
+    	    $.mobile.ajaxEnabled = false;
+    	});
+
+
         var Conf = Conf || {};
 
         Conf.server_name = '<?php echo $_SERVER['SERVER_NAME']?>';
@@ -79,12 +86,7 @@
            }
         }
 
-        $(document).ready(function() {
-            // disable ajax navs do page reload always
-            $.mobile.ajaxLinksEnabled = false;
-        });
-
-       var jsLibs = {
+        var jsLibs = {
         	        // Libraries
         	        jquery: Conf.home + "/assets/vendor/mobile/jquery-1.8.2-min",
         	        jquerymobile: Conf.home + "/assets/vendor/mobile/jquery.mobile-1.3.0.min",

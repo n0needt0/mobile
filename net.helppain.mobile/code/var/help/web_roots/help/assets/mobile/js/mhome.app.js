@@ -33,7 +33,7 @@ console.log("here");
         // Delegated events for creating new items, and clearing completed ones.
         events: {
           "click #pin" : "enterPin",
-          "click #textarea" : "enterText",
+          "focus #textarea" : "enterText",
           "submit #form" : "checkPin"
          }, 
         

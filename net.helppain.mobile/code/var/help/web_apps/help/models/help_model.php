@@ -3,7 +3,7 @@
 class Help_Model extends CI_Model {
 
 
-  public function submit_ticket($data)
+  public function submit_ticket(&$data)
   {
       $data['time'] = $data['changetime'] = time() * 1000000;
       $data['owner'] = 'system';
@@ -15,6 +15,9 @@ class Help_Model extends CI_Model {
 
           if($this->db->affected_rows() > 0)
           {
+              $data['body'] =  "<pre><b>where ". $data['type'] . "\n<b>what:</b> " . $data['summary'] . "\n<b>priority</b> " . $data['priority'];
+              $data['ticket'] = $this->db->insert_id();
+              $data['urgent'] = '<h3>IF URGENT PLEASE CALL!</h3>';
               // Code here after successful insert
               return true; // to the controller
           }

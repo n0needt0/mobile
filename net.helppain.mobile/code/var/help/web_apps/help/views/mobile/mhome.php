@@ -18,22 +18,20 @@ Howdy Piligrim, how may we help?
 
 		<select name="type" id="type" data-native-menu="false">
 		<option>Problem Area</option>
-		<option value="standard">Video Presence</option>
-		<option value="rush">Telephone</option>
-		<option value="express">Computer</option>
-		<option value="overnight">VPN</option>
-		<option value="overnight">Other</option>
+		<option value="Video Presence">Video Presence</option>
+		<option value="Telephone">Telephone</option>
+		<option value="Computer">Computer</option>
+		<option value="VPN">VPN</option>
+		<option value="Application">Application</option>
+		<option value="Other">Other</option>
 		</select>
 
 		<textarea cols="40" rows="20" name="textarea" id="textarea">Problem Description</textarea>
 
 		<select name="priority" id="priority" data-native-menu="false">
 		<option>Priority</option>
-		<option value="standard">No Rush</option>
-		<option value="rush">when you get to it</option>
-		<option value="express">I need it yesterday</option>
-		<option value="overnight">Sky is Falling</option>
-		<option value="overnight">Too late :(</option>
+		<option value="standard">when you get to it</option>
+		<option value="urgent">I need it yesterday</option>
 		</select>
 
 		<button type="submit" data-theme="a" name="submit" value="submit-value">Submit</button>

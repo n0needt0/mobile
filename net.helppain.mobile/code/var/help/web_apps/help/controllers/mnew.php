@@ -22,7 +22,7 @@ class mNew extends MY_Controller {
 	    if( $this->help_model->submit_ticket($data))
 	    {
 	        //process request
-	        $data['message'] = 'Success: 10-4';
+	        $data['message'] = 'Success:';
 
 	        $this->load->view('mobile/mnew',$data);
 	    }

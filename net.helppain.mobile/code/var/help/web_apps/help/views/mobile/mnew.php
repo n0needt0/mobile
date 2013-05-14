@@ -7,12 +7,16 @@ script.setAttribute('data-main', "/assets/mobile/js/mhome.config");
 head.appendChild(script);
 </script>
 
+<h3>
+<?php echo $message .' , your ticket number is ' . $ticket ;?>
+</h3>
+</hr>
 <p>
-<?php echo $message;?>
+<?php echo $urgent;?>
 </p>
-<form method="get" action="/">
-<div class="ui-body ui-body-a">
 
-		<button type="submit" data-theme="a" name="submit" value="submit-value">Report More</button>
-</div>
-</form>
+<p>
+<?php echo $body;?>
+</p>
+</hr>
+<a href="/" data-theme="c" data-icon="back" data-role="button">Report More</a>
