@@ -91,6 +91,8 @@ namespace :deploy do
     
     run "mv #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/constants.#{stage}.php #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/constants.php"
     
+    run "mv #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/database.#{stage}.php #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/config/database.php"
+    
   end
   
   desc "get correct apache"
