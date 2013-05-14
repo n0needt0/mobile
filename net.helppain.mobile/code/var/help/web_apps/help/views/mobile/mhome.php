@@ -22,7 +22,7 @@ Howdy Piligrim, how may we help?
 		<option value="Telephone">Telephone</option>
 		<option value="Computer">Computer</option>
 		<option value="VPN">VPN</option>
-		<option value="Application">Application</option>
+		<option value="Applications">Applications</option>
 		<option value="Other">Other</option>
 		</select>
 
