@@ -16,7 +16,7 @@ Howdy Piligrim, how may we help?
 
         <input type="text" name="pin" id="pin" value="Enter your Name"/>
 
-		<select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+		<select name="type" id="type" data-native-menu="false">
 		<option>Problem Area</option>
 		<option value="standard">Video Presence</option>
 		<option value="rush">Telephone</option>
@@ -27,8 +27,8 @@ Howdy Piligrim, how may we help?
 
 		<textarea cols="40" rows="20" name="textarea" id="textarea">Problem Description</textarea>
 
-		<select name="select-choice-b" id="select-choice-b" data-native-menu="false">
-		<option>Urgency</option>
+		<select name="priority" id="priority" data-native-menu="false">
+		<option>Priority</option>
 		<option value="standard">No Rush</option>
 		<option value="rush">when you get to it</option>
 		<option value="express">I need it yesterday</option>
