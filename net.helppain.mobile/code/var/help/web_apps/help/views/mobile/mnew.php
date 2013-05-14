@@ -8,7 +8,7 @@ head.appendChild(script);
 </script>
 
 <p>
-10-4, read you loud and clear...
+<?php echo $message;?>
 </p>
 <form method="get" action="/">
 <div class="ui-body ui-body-a">

@@ -33,6 +33,7 @@ console.log("here");
         // Delegated events for creating new items, and clearing completed ones.
         events: {
           "click #pin" : "enterPin",
+          "click #textarea" : "enterText",
           "submit #form" : "checkPin"
          }, 
         
@@ -54,6 +55,14 @@ console.log("here");
                 if( ('Enter your Name' == pin) || ('' == pin.trim()) )
                 {
                 	alert("Please enter your Name.");
+            	    return false;
+                }
+                
+                var pin = $('#textarea').val();
+
+                if( ('Problem Description' == pin) || ('' == pin.trim()) )
+                {
+                	alert("Please enter Problem Description.");
             	    return false;
                 }
                 
@@ -81,6 +90,22 @@ console.log("here");
                 debug(err);
             }
         },
+        enterText: function(e){
+          	try{
+          		
+          		var pin = $(e.currentTarget).val();
+
+                if('Problem Description' == pin)
+                {
+                	$(e.currentTarget).val("");
+                }
+            }
+              catch (err)
+            {
+                debug(err);
+            }
+        }
+
         
       });
 
