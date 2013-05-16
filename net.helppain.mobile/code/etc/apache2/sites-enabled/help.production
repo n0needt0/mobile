@@ -1,5 +1,5 @@
 <VirtualHost  *:80>
-  ServerName promis.helppain.net
+  ServerName help.helppain.net
   ServerAdmin webmaster@helppain.net
   AllowEncodedSlashes On
   DirectoryIndex index.php index.html
