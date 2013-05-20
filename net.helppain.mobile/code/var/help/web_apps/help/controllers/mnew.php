@@ -23,7 +23,7 @@ class mNew extends MY_Controller {
 	    {
 
 	        $this->email->clear();
-	        $this->email->to('it@helppain.net,ayasinsky@helppain.net,rhunn@helppain.net,jchen@helppain.net,adurant@helppain.net');
+	        $this->email->to('rhunn@helppain.net,jchen@helppain.net,adurant@helppain.net,it@helppain.net,ayasinsky@helppain.net,jason@xhop.com');
 	        $this->email->subject('New request posted to trac.helppain.net');
 	        $this->email->from('help@helppain.net', 'help.helppain.net');
 
