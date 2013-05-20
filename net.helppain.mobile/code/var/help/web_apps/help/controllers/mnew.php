@@ -21,9 +21,17 @@ class mNew extends MY_Controller {
 
 	    if( $this->help_model->submit_ticket($data))
 	    {
+
+	        $this->email->clear();
+	        $this->email->to('it@helppain.net,ayasinsky@helppain.net');
+	        $this->email->subject('New request posted to trac.helppain.net');
+	        $this->email->from('help@helppain.net', 'help.helppain.net');
+
+	        $this->email->message('New request posted to http://trac.helppain.net.. ' . print_r($data, true));
+	        $this->email->send();
+
 	        //process request
 	        $data['message'] = 'Success:';
-
 	        $this->load->view('mobile/mnew',$data);
 	    }
 	      else
