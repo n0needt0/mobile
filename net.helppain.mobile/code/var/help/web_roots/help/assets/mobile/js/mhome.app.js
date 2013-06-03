@@ -52,9 +52,9 @@ console.log("here");
         try{
           		var pin = $('#pin').val();
 
-                if( ('Enter your Name' == pin) || ('' == pin.trim()) )
+                if( ('Enter your Email' == pin) || ('' == pin.trim()) )
                 {
-                	alert("Please enter your Name.");
+                	alert("Enter your Email.");
             	    return false;
                 }
                 
@@ -80,7 +80,7 @@ console.log("here");
           		
           		var pin = $(e.currentTarget).val();
 
-                if('Enter your Name' == pin)
+                if('Enter your Email' == pin)
                 {
                 	$(e.currentTarget).val("");
                 }
