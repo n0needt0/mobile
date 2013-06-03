@@ -14,7 +14,7 @@ Howdy Piligrim, how may we help?
 
 <div class="ui-body ui-body-a">
 
-        <input type="text" name="pin" id="pin" value="Enter your Name"/>
+        <input type="text" name="pin" id="pin" value="Enter your Email"/>
 
 		<select name="type" id="type" data-native-menu="false">
 		<option>Problem Area</option>

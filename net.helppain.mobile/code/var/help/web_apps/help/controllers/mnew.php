@@ -14,10 +14,11 @@ class mNew extends MY_Controller {
 	    //get post variables
 	    $data = array();
 
-	    $data['reporter'] = $this->input->post('pin');
+	    $data['reporter'] = $data['cc'] = $this->input->post('pin');
 	    $data['type'] = $this->input->post('type');
 	    $data['summary'] = $this->input->post('textarea');
 	    $data['priority'] = $this->input->post('priority');
+
 
 	    if( $this->help_model->submit_ticket($data))
 	    {

@@ -9,7 +9,6 @@ class Help_Model extends CI_Model {
       $data['owner'] = 'system';
       $data['status'] = 'new';
 
-
       try{
           $this->db->insert('ticket', $data);
 
@@ -17,7 +16,7 @@ class Help_Model extends CI_Model {
           {
               $data['body'] =  "<pre><b>where ". $data['type'] . "\n<b>what:</b> " . $data['summary'] . "\n<b>priority</b> " . $data['priority'];
               $data['ticket'] = $this->db->insert_id();
-              $data['urgent'] = '<h3>IF URGENT PLEASE CALL!</h3>';
+              $data['urgent'] = '<h3>IF URGENT PLEASE CALL ext 5425 !</h3>';
               // Code here after successful insert
               return true; // to the controller
           }
