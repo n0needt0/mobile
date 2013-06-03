@@ -58,6 +58,12 @@ console.log("here");
             	    return false;
                 }
                 
+                if( isValidEmail(pin.trim()))
+                {
+                	alert("Invalid Email.");
+            	    return false;
+                }	
+                
                 var pin = $('#textarea').val();
 
                 if( ('Problem Description' == pin) || ('' == pin.trim()) )
@@ -104,9 +110,7 @@ console.log("here");
             {
                 debug(err);
             }
-        }
-
-        
+        }        
       });
 
     App.init();
