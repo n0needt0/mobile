@@ -5,7 +5,6 @@ require([
 ],
         
 function( jQuery, Backbone) {
-console.log("here");
 
     var App = {
             Views: {},
