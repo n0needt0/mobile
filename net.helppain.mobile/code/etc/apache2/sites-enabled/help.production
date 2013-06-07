@@ -16,3 +16,22 @@
     RewriteEngine on
   </Directory>
 </VirtualHost>
+
+<VirtualHost  *:80>
+  ServerName support.helppain.net
+  ServerAdmin webmaster@helppain.net
+  AllowEncodedSlashes On
+  DirectoryIndex index.php index.html
+    SetEnv HTTPS 1
+  RewriteEngine On
+
+  DocumentRoot /var/www/help.production/web_roots/help
+  Alias /assets/  /var/www/help.production/web_roots/help/assets/
+  <Directory "/var/www/help.production/web_roots/help">
+      Options All
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+    RewriteEngine on
+  </Directory>
+</VirtualHost>

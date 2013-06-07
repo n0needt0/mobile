@@ -1,1 +1,5 @@
 Deny from all
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} !^help\.helppain\.net$ [NC]
+RewriteRule ^(.*)$ http://help.helppain.net/$1 [R=301,L]
