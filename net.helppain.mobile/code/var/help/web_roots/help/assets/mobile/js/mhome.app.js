@@ -70,6 +70,7 @@ function( jQuery, Backbone) {
                 if( ('Problem Description (BE SPECIFIC!!!)' == pin) || ('' == pin.trim()) )
                 {
                 	alert("Please enter Problem Description.");
+                	pin.val('Problem Description (BE SPECIFIC!!!)');
             	    return false;
                 }
                 
