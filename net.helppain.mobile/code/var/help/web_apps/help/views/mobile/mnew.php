@@ -12,7 +12,7 @@ head.appendChild(script);
 </h3>
 </hr>
 <p>
-<?php echo $urgent;?>
+<h3>IF URGENT PLEASE CALL ext 1146 !</h3>
 </p>
 
 <p>
