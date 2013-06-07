@@ -23,6 +23,7 @@ Howdy Piligrim, how may we help?
 		<option value="Computer">Computer</option>
 		<option value="VPN">VPN</option>
 		<option value="Applications">Applications(i.e. Trac)</option>
+		<option value="Purchase">Purchase Request(with approval)</option>
 		<option value="Other">Other</option>
 		</select>
 
