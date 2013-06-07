@@ -67,7 +67,7 @@ function( jQuery, Backbone) {
                 
                 var pin = $('#textarea').val();
 
-                if( ('Problem Description' == pin) || ('' == pin.trim()) )
+                if( ('Problem Description (BE SPECIFIC!!!)' == pin) || ('' == pin.trim()) )
                 {
                 	alert("Please enter Problem Description.");
             	    return false;
@@ -102,7 +102,7 @@ function( jQuery, Backbone) {
           		
           		var pin = $(e.currentTarget).val();
 
-                if('Problem Description' == pin)
+                if('Problem Description (BE SPECIFIC!!!)' == pin)
                 {
                 	$(e.currentTarget).val("");
                 }
