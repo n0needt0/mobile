@@ -78,6 +78,7 @@ namespace :deploy do
   desc "Write current revision to "
   task :publish_revision do
   run "content=`cat #{deploy_to}/current/REVISION`;ip=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`; sed -i \"s/MY_REVISION/$content-$ip/g\" #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/views/templates/mobile.php"
+  run "content=`cat #{deploy_to}/current/REVISION`;ip=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`; sed -i \"s/MY_REVISION/$content-$ip/g\" #{deploy_to}/current/net.helppain.mobile/code/var/help/web_apps/help/views/templates/rapport.php"
   end
   
   desc "clean up old releases"
