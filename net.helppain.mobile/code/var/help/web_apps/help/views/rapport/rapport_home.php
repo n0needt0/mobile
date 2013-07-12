@@ -27,7 +27,7 @@ head.appendChild(script);
 <script>
 
 	var ptracID = "NO_ID";
-
+	
 	function clearToggle(chosenButton)
 	{
 		var cb = $(chosenButton);
@@ -87,6 +87,40 @@ head.appendChild(script);
 			update(key, value);
 		}
 	}
+
+	function updateMedications(base)
+	{
+		var container = $(base);
+		while(!container.hasClass("checkable"))
+		{
+			container = container.parent();
+		}
+		var key = ptracID + "." + container.attr("data-keyletter") + ".med";
+
+		container = $(base);
+		while(!container.hasClass("unstyled"))
+		{
+			container = container.parent();
+		}
+		var value = new Array();
+		container.find(".box").each(function(index)
+		{
+			value[index] = $(this).find("input").val() + "/";
+			if($(this).find(".helpful").hasClass("chosen"))
+			{
+				value[index] += "helpful";
+			}
+			else if($(this).find(".unhelpful").hasClass("chosen"))
+			{
+				value[index] += "unhelpful";
+			}
+			else
+			{
+				value[index] += "neither";
+			}
+		});
+		update(key, value);
+	}
 	
 	$(document).ready(function()
 	{
@@ -107,6 +141,11 @@ head.appendChild(script);
 		{
 			updateVal(this);
 		});
+
+		$(".changemeds").live('focusout', function()
+		{
+			updateVal(this);
+		});
 		
 		$(".checkable").live('expand', function()
 		{
@@ -118,6 +157,7 @@ head.appendChild(script);
 			var has = $(this).hasClass("chosen");
 			clearToggle(this);
 			if(!has) $(this).addClass("chosen");
+			updateMedications(this);
 		});
 
 		$(".unhelpful").live("click", function()
@@ -125,6 +165,7 @@ head.appendChild(script);
 			var has = $(this).hasClass("chosen");
 			clearToggle(this);
 			if(!has) $(this).addClass("chosen");
+			updateMedications(this);
 		});
 
 		$(".deleteButton").live("click", function()
@@ -158,7 +199,7 @@ head.appendChild(script);
 		
 			var newElement = "";
 			newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child">';
-			newElement += '<div class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-c" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" class="deleteButton ui-btn-hidden" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input placeholder="Name of Medication" type="text" value="" class="ui-input-text ui-body-c"></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div>';
+			newElement += '<div class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-c" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" class="deleteButton ui-btn-hidden" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input placeholder="Name of Medication" type="text" value="" class="changemeds ui-input-text ui-body-c"></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div>';
 			newElement += '</li>';
 			
 			ul.append(newElement);
@@ -398,14 +439,14 @@ head.appendChild(script);
    ?>
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="e" class="checkable" data-role="collapsible">
    <h3>What medications have you tried for your pain?<span class="checkImage"></span></h3>
    <div data-role="content">
    	<ul class="unstyled" data-role="listview">
    	<li class="medicationItem">
    		<div class="box" data-role="fieldcontain" style="display:block;">
    			<button class="deleteButton" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete"></button>
-   			<input placeholder="Name of Medication" type="text" value=""></input>
+   			<input class="changemeds" placeholder="Name of Medication" type="text" value=""></input>
    			<button class="helpful toggle" data-inline="true" data-corners="false">Helpful</button>
    			<button class="unhelpful toggle" data-inline="true" data-corners="false">Not Helpful</button>
 		</div>
