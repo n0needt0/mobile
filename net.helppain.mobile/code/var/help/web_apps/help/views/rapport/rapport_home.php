@@ -61,6 +61,32 @@ head.appendChild(script);
 		var key = ptracID + "." + container.attr("data-keyletter") + "." + $(base).attr("data-keynum");
 		return key;
 	}
+
+	function updateVal(base)
+	{
+		if($(base).prop("tagName") == "INPUT" || $(base).prop("tagName") == "TEXTAREA")
+		{
+			var key = makeKey(base);
+			var value = $(base).val();
+			update(key, value);
+		}
+		else if($(base).prop("tagName") == "SELECT")
+		{
+			var key = makeKey(base);
+			var value = "";
+			var container = $(base);
+			while(container.prop("tagName") != "FIELDSET" && container.attr("data-role") != "collapsible")
+			{
+				container = container.parent();
+			}
+			container.find(".changeable option:selected").each(function(index)
+			{
+				value += $(this).val() + "/";
+			});
+			value = value.substring(0, value.length - 1);
+			update(key, value);
+		}
+	}
 	
 	$(document).ready(function()
 	{
@@ -74,28 +100,12 @@ head.appendChild(script);
 
 		$(".changeable").live('focusout', function()
 		{
-			if($(this).prop("tagName") == "INPUT")
-			{
-				var key = makeKey(this);
-				var value = $(this).val();
-				update(key, value);
-			}
-			else if($(this).prop("tagName") == "SELECT")
-			{
-				var key = makeKey(this);
-				var value = "";
-				var container = $(this);
-				while(container.prop("tagName") != "FIELDSET")
-				{
-					container = container.parent();
-				}
-				container.find(".changeable option:selected").each(function(index)
-				{
-					value += $(this).val() + "/";
-				});
-				value = value.substring(0, value.length - 1);
-				update(key, value);
-			}
+			updateVal(this);
+		});
+
+		$(".changeable").live('change', function()
+		{
+			updateVal(this);
 		});
 		
 		$(".checkable").live('expand', function()
@@ -374,11 +384,11 @@ head.appendChild(script);
      echo "<div data-role='collapsible'>\n";
        echo "<h3>$v</h3>\n";
        echo "<label for='$key'>Details (type, #of visits, dates:</label>\n";
-       echo "<textarea name='$key'' id='$key'>\n";
+       echo "<textarea class='changeable' data-keynum='".($k*2+1)."' name='$key'' id='$key'>\n";
        echo "</textarea>\n";
 
        echo "<label id='slider-$key-label' class='ui-slider' for='slider-$key'>Did it help?:</label>\n";
-       echo "<select id='slider-$key' class='ui-slider-switch' data-role='slider' name='slider-$key'>\n";
+       echo "<select id='slider-$key' class='changeable ui-slider-switch' data-keynum='".($k*2+2)."' data-role='slider' name='slider-$key'>\n";
        echo "<option value='nope'>Nope</option>\n";
        echo "<option value='yep'>Yep</option>\n";
        echo "</select>\n";
