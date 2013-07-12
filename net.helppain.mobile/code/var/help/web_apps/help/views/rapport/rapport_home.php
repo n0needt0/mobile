@@ -25,8 +25,42 @@ head.appendChild(script);
 </style>
 
 <script>
+
+	var ptracID = "NO_ID";
+
+	function clearToggle(chosenButton)
+	{
+		var cb = $(chosenButton);
+		while(!cb.hasClass("box"))
+		{
+			cb = cb.parent();
+		}
+		cb.find(".toggle").removeClass("chosen");
+		return true;
+	}
+
+	function clear(curDiv)
+	{
+		$(curDiv).find('.checkImage').html(' ');
+		return true;
+	}
+
+	function update(k, v)
+	{
+		console.log(k + ", " + v);
+		return true;
+	}
+	
 	$(document).ready(function()
 	{
+		$(".ptracIn").live('focusout', function()
+		{
+			if(!isNaN($(this).val()))
+			{
+				ptracID = $(this).val();
+			}
+		});
+		
 		$(".checkable").live('expand', function()
 		{
 			$(this).find('.checkImage').html('<img id="icon" src="http://www.clker.com/cliparts/9/I/e/1/i/B/dark-green-check-mark-hi.png"/>');
@@ -62,21 +96,6 @@ head.appendChild(script);
 				debug(e.message);
 			}
 		});
-		
-		function clearToggle(chosenButton)
-		{
-			var cb = $(chosenButton);
-			while(!cb.hasClass("box"))
-			{
-				cb = cb.parent();
-			}
-			cb.find(".toggle").removeClass("chosen");
-		}
-		
-		function clear(curDiv)
-		{
-			$(curDiv).find('.checkImage').html(' ');
-		}
 	});
 
 	$('#page').live("pageinit", function(event)
@@ -104,7 +123,7 @@ head.appendChild(script);
 <div>
     <div data-role="fieldcontain" class="ui-hide-label" style="width:80px;">
          <label for="ptrac">ptrac id:</label>
-         <input type="text" name="ptrac" id="ptrac" value="" placeholder="Ptrac ID"/>
+         <input class="ptracIn" type="text" name="ptrac" id="ptrac" value="" placeholder="Ptrac ID"/>
     </div>
     
     <h1>Patient Name</h1>
