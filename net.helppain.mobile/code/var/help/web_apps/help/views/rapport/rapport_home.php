@@ -75,7 +75,7 @@ head.appendChild(script);
 			var key = makeKey(base);
 			var value = "";
 			var container = $(base);
-			while(container.prop("tagName") != "FIELDSET" && container.attr("data-role") != "collapsible")
+			while(container.prop("tagName") != "FIELDSET" && container.prop("tagName") != "TD" && container.attr("data-role") != "collapsible")
 			{
 				container = container.parent();
 			}
@@ -457,7 +457,7 @@ head.appendChild(script);
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="addMedication" data-inline="true" data-theme="e" data-iconpos="notext" data-icon="plus"></button>
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="f" class="checkable" data-role="collapsible">
    <h3>Misc. Questions <span class="checkImage"></span></h3>
    <?php
    $questions = array('Have you had any adverse effects from any medications you have trialed? For example: sleepiness, naisea, headaches, etc.', 'Do you have difficulty sleeping as a result of your pain?', 'Do you have a sexual dysfunction as a result of your pain?', 'Have you noticed weight gain since your injury? How much weight gain over what period of time?', 'Have you been told that you are a candidate for surgery for your pain? If so, is this something that you desire, or wish to avoid if possible?');
@@ -467,14 +467,14 @@ head.appendChild(script);
 
      echo "<div data-role='collapsible'>\n";
        echo "<h3>$v</h3>\n";
-       echo "<textarea name='$key'' id='$key'>\n";
+       echo "<textarea class='changeable' data-keynum='".($k+1)."'name='$key'' id='$key'>\n";
        echo "</textarea>\n";
      echo "</div>\n";
    }
    ?>
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="g" class="checkable" data-role="collapsible">
    <h3>Does the pain make it hard for you to: <span class="checkImage"></span></h3>
    <table style="width:25%;">
    <?php
@@ -483,8 +483,8 @@ head.appendChild(script);
    {
      $key = 'effect_'  . str_replace(' ', '_', strtolower($v));
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
-     echo "<td><h3	>$v:</h3></td>";
-     echo "<td><select style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='ui-slider-switch' data-role='slider' name='slider-$key'>\n";
+     echo "<td><h3>$v:</h3></td>";
+     echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
      echo "<option value='nope'>Nope</option>\n";
      echo "<option value='yep'>Yep</option>\n";
      echo "</select></td>\n";
