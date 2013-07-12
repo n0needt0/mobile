@@ -16,7 +16,7 @@ require.config({
   
 //Initialize the application with the main application file
   deps: [
-         Conf.home + "/assets/mobile/js/mhome.app.js",
-         Conf.home + "/assets/mobile/js/mhome.templates.js"
+         Conf.home + "/assets/mobile/js/home.app.js",
+         Conf.home + "/assets/mobile/js/home.templates.js"
          ]
 });

@@ -66,7 +66,7 @@ head.appendChild(script);
 	{
 		$(".ptracIn").live('focusout', function()
 		{
-			if(!isNaN($(this).val()) && $(this).indexOf('.') == -1 && $(this).indexOf('-') == -1)
+			if(!isNaN($(this).val()) && $(this).val().indexOf('.') == -1 && $(this).val().indexOf('-') == -1)
 			{
 				ptracID = $(this).val();
 			}
@@ -74,10 +74,28 @@ head.appendChild(script);
 
 		$(".changeable").live('focusout', function()
 		{
-			//if($(this).attr("tag") == )
-			var key = makeKey(this);
-			var value = $(this).val();
-			update(key, value);
+			if($(this).prop("tagName") == "INPUT")
+			{
+				var key = makeKey(this);
+				var value = $(this).val();
+				update(key, value);
+			}
+			else if($(this).prop("tagName") == "SELECT")
+			{
+				var key = makeKey(this);
+				var value = "";
+				var container = $(this);
+				while(container.prop("tagName") != "FIELDSET")
+				{
+					container = container.parent();
+				}
+				container.find(".changeable option:selected").each(function(index)
+				{
+					value += $(this).val() + "/";
+				});
+				value = value.substring(0, value.length - 1);
+				update(key, value);
+			}
 		});
 		
 		$(".checkable").live('expand', function()
@@ -154,7 +172,7 @@ head.appendChild(script);
         <label for="caller">Caller:</label>
         <input data-keynum="1" class="changeable" type="text" name="caller" id="caller" value="" placeholder="Caller"/>
     </div>
-
+    
     <div>
     <fieldset data-role="controlgroup" data-type="horizontal">
 		<legend>Date of Call:</legend>
@@ -196,9 +214,9 @@ head.appendChild(script);
 
 		<label for="select-choice-year-dc">Year</label>
 		<select class="changeable" data-keynum="2" name="select-choice-year-dc" id="select-choice-year-dc">
-			<option value="2011">2013</option>
-			<option value="2011">2012</option>
-			<option value="2010">2011</option>
+			<option value="2013">2013</option>
+			<option value="2012">2012</option>
+			<option value="2011">2011</option>
 		</select>
 	</fieldset>
 	</div>
