@@ -144,7 +144,7 @@ head.appendChild(script);
 
 		$(".changemeds").live('focusout', function()
 		{
-			updateVal(this);
+			updateMedications(this);
 		});
 		
 		$(".checkable").live('expand', function()
@@ -476,7 +476,7 @@ head.appendChild(script);
 
 <div data-keyletter="g" class="checkable" data-role="collapsible">
    <h3>Does the pain make it hard for you to: <span class="checkImage"></span></h3>
-   <table style="width:25%;">
+   <table style="width:100%;">
    <?php
    $effects = array('Dress', 'Groom', 'Bathe', 'Do home duties', 'Provide childcare', 'Work', 'Spend time with family', 'Enjoy life', 'Sit', 'Stand', 'Lift/carry');
    foreach($effects as $k=>$v)
@@ -494,17 +494,17 @@ head.appendChild(script);
    </table>
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="h" class="checkable" data-role="collapsible">
    <h3>What are your goals? <span class="checkImage"></span></h3>
-   <table style="width:25%;">
+   <table style="width:100%;">
    <?php
    $goals = array('Increase your function', 'Medication reduction/optimization', 'Be independent in your daily life', 'Return to work', 'Case resolution', 'MMI status');
    foreach($goals as $k=>$v)
    {
      $key = 'goals_'  . str_replace(' ', '_', strtolower($v));
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
-     echo "<td><h3	>$v:</h3></td>";
-     echo "<td><select style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='ui-slider-switch' data-role='slider' name='slider-$key'>\n";
+     echo "<td><h3>$v:</h3></td>";
+     echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
      echo "<option value='nope'>Nope</option>\n";
      echo "<option value='yep'>Yep</option>\n";
      echo "</select></td>\n";
@@ -514,22 +514,22 @@ head.appendChild(script);
    
    <tr>
    	<td><h3>Other</h3></td>
-   	<td><textarea></textarea></td>
+   	<td><textarea class="changeable" data-keynum="7"></textarea></td>
    </tr>
    </table>
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="i" class="checkable" data-role="collapsible">
    <h3>Do you have any of these as a result of your injury/pain? <span class="checkImage"></span></h3>
-   <table style="width:25%;">
+   <table style="width:100%;">
    <?php
    $pains = array('Anger', 'Fear that you will re-injure yourself', 'Unhealthy ways of coping with your pain, ie:alcohol, illiciet drugs, etc', 'Mood disturbance', 'Depression', 'Irritability', 'Emotional distress', 'Somatic preoccupation');
    foreach($pains as $k=>$v)
    {
      $key = 'pain_'  . str_replace(' ', '_', strtolower($v));
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
-     echo "<td><h3	>$v:</h3></td>";
-     echo "<td><select style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='ui-slider-switch' data-role='slider' name='slider-$key'>\n";
+     echo "<td><h3>$v:</h3></td>";
+     echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
      echo "<option value='nope'>Nope</option>\n";
      echo "<option value='yep'>Yep</option>\n";
      echo "</select></td>\n";
