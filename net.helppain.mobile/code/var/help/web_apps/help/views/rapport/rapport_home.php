@@ -27,7 +27,7 @@ head.appendChild(script);
 <script>
 
 	var ptracID = "NO_ID";
-	
+
 	function clearToggle(chosenButton)
 	{
 		var cb = $(chosenButton);
@@ -47,7 +47,7 @@ head.appendChild(script);
 
 	function update(k, v)
 	{
-		console.log(k + ", " + v);
+		debug(k + ", " + v);
 		return true;
 	}
 
@@ -121,7 +121,7 @@ head.appendChild(script);
 		});
 		update(key, value);
 	}
-	
+
 	$(document).ready(function()
 	{
 		$(".ptracIn").live('focusout', function()
@@ -146,7 +146,7 @@ head.appendChild(script);
 		{
 			updateMedications(this);
 		});
-		
+
 		$(".checkable").live('expand', function()
 		{
 			$(this).find('.checkImage').html('<img id="icon" src="http://www.clker.com/cliparts/9/I/e/1/i/B/dark-green-check-mark-hi.png"/>');
@@ -187,7 +187,7 @@ head.appendChild(script);
 	});
 
 	$('#page').live("pageinit", function(event)
-	{		
+	{
 		$(".addMedication").click(function()
 		{
 			var container = $(this);
@@ -196,12 +196,12 @@ head.appendChild(script);
 				container = container.parent();
 			}
 			var ul = $('ul.unstyled');
-		
+
 			var newElement = "";
 			newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child">';
 			newElement += '<div class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-c" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" class="deleteButton ui-btn-hidden" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input placeholder="Name of Medication" type="text" value="" class="changemeds ui-input-text ui-body-c"></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div>';
 			newElement += '</li>';
-			
+
 			ul.append(newElement);
 		});
 	});
@@ -213,7 +213,7 @@ head.appendChild(script);
          <label for="ptrac">ptrac id:</label>
          <input class="ptracIn" type="text" name="ptrac" id="ptrac" value="" placeholder="Ptrac ID"/>
     </div>
-    
+
     <h1>Patient Name</h1>
 </div>
 
@@ -223,11 +223,11 @@ head.appendChild(script);
         <label for="caller">Caller:</label>
         <input data-keynum="1" class="changeable" type="text" name="caller" id="caller" value="" placeholder="Caller"/>
     </div>
-    
+
     <div>
     <fieldset data-role="controlgroup" data-type="horizontal">
 		<legend>Date of Call:</legend>
-		
+
 		<label for="select-choice-month-dc">Month</label>
 		<select class="changeable" data-keynum="2" name="select-choice-month-dc" id="select-choice-month-dc">
 			<option value="jan">Jan</option>
@@ -292,7 +292,7 @@ head.appendChild(script);
 		<label for="select-choice-day-dob">Day</label>
 		<select class="changeable" data-keynum="1" name="select-choice-day-dob" id="select-choice-day-dob">
 			<?php
-			
+
 		    for($i=1; $i<=31; $i++)
 		    {
 		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
@@ -511,7 +511,7 @@ head.appendChild(script);
      echo "</div></tr>";
    }
    ?>
-   
+
    <tr>
    	<td><h3>Other</h3></td>
    	<td><textarea class="changeable" data-keynum="7"></textarea></td>
