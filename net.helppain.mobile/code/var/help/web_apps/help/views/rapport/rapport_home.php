@@ -50,6 +50,17 @@ head.appendChild(script);
 		console.log(k + ", " + v);
 		return true;
 	}
+
+	function makeKey(base)
+	{
+		var container = $(base);
+		while(!container.hasClass("checkable"))
+		{
+			container = container.parent();
+		}
+		var key = ptracID + "." + container.attr("data-keyletter") + "." + $(base).attr("data-keynum");
+		return key;
+	}
 	
 	$(document).ready(function()
 	{
@@ -59,6 +70,13 @@ head.appendChild(script);
 			{
 				ptracID = $(this).val();
 			}
+		});
+
+		$(".changeable").live('focusout', function()
+		{
+			var key = makeKey(this);
+			var value = $(this).val();
+			update(key, value);
 		});
 		
 		$(".checkable").live('expand', function()
@@ -129,14 +147,11 @@ head.appendChild(script);
     <h1>Patient Name</h1>
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div class="checkable" data-keyletter="a" data-role="collapsible">
     <h3>Call Info <span class="checkImage"></span></h3>
-
-
-
 	<div>
         <label for="caller">Caller:</label>
-        <input type="text" name="caller" id="caller" value="" placeholder="Caller"/>
+        <input data-keynum="1" class="changeable" type="text" name="caller" id="caller" value="" placeholder="Caller"/>
     </div>
 
     <div>
