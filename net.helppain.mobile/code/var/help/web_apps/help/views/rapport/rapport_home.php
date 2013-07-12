@@ -66,7 +66,7 @@ head.appendChild(script);
 	{
 		$(".ptracIn").live('focusout', function()
 		{
-			if(!isNaN($(this).val()))
+			if(!isNaN($(this).val()) && $(this).indexOf('.') == -1 && $(this).indexOf('-') == -1)
 			{
 				ptracID = $(this).val();
 			}
@@ -74,6 +74,7 @@ head.appendChild(script);
 
 		$(".changeable").live('focusout', function()
 		{
+			//if($(this).attr("tag") == )
 			var key = makeKey(this);
 			var value = $(this).val();
 			update(key, value);
@@ -159,7 +160,7 @@ head.appendChild(script);
 		<legend>Date of Call:</legend>
 		
 		<label for="select-choice-month-dc">Month</label>
-		<select name="select-choice-month-dc" id="select-choice-month-dc">
+		<select class="changeable" data-keynum="2" name="select-choice-month-dc" id="select-choice-month-dc">
 			<option value="jan">Jan</option>
 			<option value="dec">Dec</option>
 			<option value="feb">Feb</option>
@@ -176,7 +177,7 @@ head.appendChild(script);
 		</select>
 
 		<label for="select-choice-day-dc">Day</label>
-		<select name="select-choice-day-dc" id="select-choice-day-dc">
+		<select class="changeable" data-keynum="2" name="select-choice-day-dc" id="select-choice-day-dc">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -194,7 +195,7 @@ head.appendChild(script);
 		</select>
 
 		<label for="select-choice-year-dc">Year</label>
-		<select name="select-choice-year-dc" id="select-choice-year-dc">
+		<select class="changeable" data-keynum="2" name="select-choice-year-dc" id="select-choice-year-dc">
 			<option value="2011">2013</option>
 			<option value="2011">2012</option>
 			<option value="2010">2011</option>
