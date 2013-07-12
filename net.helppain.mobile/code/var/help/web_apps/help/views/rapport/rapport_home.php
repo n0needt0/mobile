@@ -196,20 +196,12 @@ head.appendChild(script);
 
 		<label for="select-choice-day-dc">Day</label>
 		<select class="changeable" data-keynum="2" name="select-choice-day-dc" id="select-choice-day-dc">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">13</option>
-			<option value="13">14</option>
-			<option value="15">15</option>
+			<?php
+		    for($i=1; $i<=31; $i++)
+		    {
+		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
+		    }
+		    ?>
 		</select>
 
 		<label for="select-choice-year-dc">Year</label>
@@ -222,7 +214,7 @@ head.appendChild(script);
 	</div>
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="b" class="checkable" data-role="collapsible">
    <h3>Patient Info <span class="checkImage"></span></h3>
 
      <div>
@@ -230,7 +222,7 @@ head.appendChild(script);
 		<legend>Date of Birth:</legend>
 
 		<label for="select-choice-month-dob">Month</label>
-		<select name="select-choice-month-dob" id="select-choice-month-dob">
+		<select class="changeable" data-keynum="1" name="select-choice-month-dob" id="select-choice-month-dob">
 			<option value="jan">Jan</option>
 			<option value="dec">Dec</option>
 			<option value="feb">Feb</option>
@@ -247,25 +239,18 @@ head.appendChild(script);
 		</select>
 
 		<label for="select-choice-day-dob">Day</label>
-		<select name="select-choice-day-dob" id="select-choice-day-dob">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">13</option>
-			<option value="13">14</option>
-			<option value="15">15</option>
+		<select class="changeable" data-keynum="1" name="select-choice-day-dob" id="select-choice-day-dob">
+			<?php
+			
+		    for($i=1; $i<=31; $i++)
+		    {
+		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
+		    }
+		    ?>
 		</select>
 
 		<label for="select-choice-year-dob">Year</label>
-		<select name="select-choice-year-dob" id="select-choice-year-dob">
+		<select class="changeable" data-keynum="1" name="select-choice-year-dob" id="select-choice-year-dob">
 		    <?php
 		    $y = date("Y",time());
 
@@ -283,7 +268,7 @@ head.appendChild(script);
 		<legend>Height</legend>
 
 		<label for="select-choice-ft">Feet</label>
-		<select name="select-choice-ft" id="select-choice-ft">
+		<select class="changeable" data-keynum="2" name="select-choice-ft" id="select-choice-ft">
 			<option value="5">5</option>
 			<option value="6">6</option>
 			<option value="3">3</option>
@@ -292,7 +277,7 @@ head.appendChild(script);
 		</select>
 
 		<label for="select-choice-in">Inch</label>
-		<select name="select-choice-in" id="select-choice-in">
+		<select class="changeable" data-keynum="2" name="select-choice-in" id="select-choice-in">
 		    <?php
 		    for($i=0; $i<12;$i++)
 		    {
@@ -306,11 +291,11 @@ head.appendChild(script);
     </div>
 
       <label for="weight">Weight Lb</label>
-      <input type="number" name="weight" id="weight" value="" placeholder="Weight Lb"/>
+      <input class="changeable" data-keynum="3" type="number" name="weight" id="weight" value="" placeholder="Weight Lb"/>
 
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="c" class="checkable" data-role="collapsible">
    <h3>Injury History <span class="checkImage"></span></h3>
 
    	     <div>
@@ -318,7 +303,7 @@ head.appendChild(script);
 		<legend>Injury Date:</legend>
 
 		<label for="select-choice-month-injury">Month</label>
-		<select name="select-choice-month-injury" id="select-choice-month-injury">
+		<select class="changeable" data-keynum="1" name="select-choice-month-injury" id="select-choice-month-injury">
 			<option value="jan">Jan</option>
 			<option value="dec">Dec</option>
 			<option value="feb">Feb</option>
@@ -335,7 +320,7 @@ head.appendChild(script);
 		</select>
 
 		<label for="select-choice-day-injury">Day</label>
-		<select name="select-choice-day-injury" id="select-choice-day-injury">
+		<select class="changeable" data-keynum="1" name="select-choice-day-injury" id="select-choice-day-injury">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -353,7 +338,7 @@ head.appendChild(script);
 		</select>
 
 		<label for="select-choice-year-injury">Year</label>
-		<select name="select-choice-year-injury" id="select-choice-year-injury">
+		<select class="changeable" data-keynum="1" name="select-choice-year-injury" id="select-choice-year-injury">
 		    <?php
 		    $y = date("Y",time());
 
@@ -367,16 +352,16 @@ head.appendChild(script);
 	</div>
 
     <label for="howdidyourinjuryoccur">How did your injury occur?</label>
-    <textarea name="howdidyourinjuryoccur" id="howdidyourinjuryoccur">
+    <textarea class="changeable" data-keynum="2" name="howdidyourinjuryoccur" id="howdidyourinjuryoccur">
     </textarea>
 
     <label for="whereisyourpainlocated">Where is your pain located?</label>
-    <textarea name="whereisyourpainlocated" id="whereisyourpainlocated">
+    <textarea class="changeable" data-keynum="3" name="whereisyourpainlocated" id="whereisyourpainlocated">
     </textarea>
 
 </div>
 
-<div class="checkable" data-role="collapsible">
+<div data-keyletter="d" class="checkable" data-role="collapsible">
    <h3>What procedures have you done to treat your pain?<span class="checkImage"></span></h3>
 
    <?php
