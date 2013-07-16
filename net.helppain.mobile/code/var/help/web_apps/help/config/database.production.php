@@ -64,5 +64,18 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['development_app']['hostname'] = "dashboard.helppain.net";
+$db['development_app']['username'] = "dashboard";
+$db['development_app']['password'] = "dashboard#1";
+$db['development_app']['database'] = "dashboard";
+$db['development_app']['dbdriver'] = "mysql";
+$db['development_app']['dbprefix'] = "";
+$db['development_app']['pconnect'] = FALSE;
+$db['development_app']['db_debug'] = TRUE;
+$db['development_app']['cache_on'] = FALSE;
+$db['development_app']['cachedir'] = "";
+$db['development_app']['char_set'] = "utf8";
+$db['development_app']['dbcollat'] = "utf8_general_ci";
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
