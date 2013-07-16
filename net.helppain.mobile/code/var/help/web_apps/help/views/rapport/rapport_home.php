@@ -1,5 +1,3 @@
-<?php echo $data['fieldA']; ?>
-
 <script>
 var head= document.getElementsByTagName('head')[0];
 var script= document.createElement('script');
@@ -30,6 +28,36 @@ head.appendChild(script);
 
 	var ptracID = "NO_ID";
 
+	function updateServer(ptrac, keyvals)
+	{
+		try
+		{
+			var api_url = Help.api.home + '/rapport_api/key_data';
+			debug('list schedule api url:' + api_url);
+	    	$.ajax({
+	        	url: api_url,
+	        	type: "POST",
+	        	data: {ptracid : ptrac, newdata : keyvals},
+				dataType: "jsonp",
+				jsonp : "callback",
+				success: function(data)
+				{
+					debug(data);
+				}
+//				error: function(data)
+//				{
+//					alert('can not finish api request to ' + api_url);
+//					debug(data);
+//				}
+			});
+			debug('finished schedule api url:' + api_url);
+		}
+		catch (err)
+		{
+			debug(err);
+		}
+	}
+	
 	function clearToggle(chosenButton)
 	{
 		var cb = $(chosenButton);
@@ -158,7 +186,10 @@ head.appendChild(script);
 		{
 			var has = $(this).hasClass("chosen");
 			clearToggle(this);
-			if(!has) $(this).addClass("chosen");
+			if(!has)
+			{
+				$(this).addClass("chosen");
+			}
 			updateMedications(this);
 		});
 
@@ -166,7 +197,10 @@ head.appendChild(script);
 		{
 			var has = $(this).hasClass("chosen");
 			clearToggle(this);
-			if(!has) $(this).addClass("chosen");
+			if(!has)
+			{
+				$(this).addClass("chosen");
+			}
 			updateMedications(this);
 		});
 
@@ -185,6 +219,26 @@ head.appendChild(script);
 			{
 				debug(e.message);
 			}
+		});
+
+		$(".toggleOpen1").live("click", function()
+		{
+			$(".ui-content").children(".checkable").each(function(index)
+			{
+				debug(this);
+				$(this).trigger('expand');
+			});
+
+			
+		});
+
+		$(".toggleClose1").live("click", function()
+		{
+			$(".ui-content").children(".checkable").each(function(index)
+			{
+				debug(this);
+				$(this).trigger('collapse');
+			});
 		});
 	});
 
@@ -208,10 +262,22 @@ head.appendChild(script);
 
 
 <div>
-    <div data-role="fieldcontain" class="ui-hide-label" style="width:80px;">
-         <label for="ptrac">ptrac id:</label>
-         <input class="ptracIn" type="text" name="ptrac" id="ptrac" value="" placeholder="Ptrac ID"/>
-    </div>
+    <table>
+    	<tr>
+    		<td>
+    			<div data-role="fieldcontain" class="ui-hide-label" style="width:80px">
+    				<label for="ptrac">ptrac id:</label>
+         			<input data-inline="true" class="ptracIn" type="text" name="ptrac" id="ptrac" value="" placeholder="Ptrac ID"/>
+         		</div>
+    		</td>
+    		<td>
+    			<button data-inline="true" class="toggleOpen">Expand All</button>
+    		</td>
+    		<td>
+    			<button data-inline="true" class="toggleClose">Collapse All</button>
+    		</td>
+    	</tr>
+    </table>
 
     <h1>Patient Name</h1>
 </div>
