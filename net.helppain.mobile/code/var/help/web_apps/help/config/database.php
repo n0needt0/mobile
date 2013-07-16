@@ -64,5 +64,18 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['dashboard']['hostname'] = "localhost";
+$db['dashboard']['username'] = "dashboard";
+$db['dashboard']['password'] = "dashboard#1";
+$db['dashboard']['database'] = "dashboard";
+$db['dashboard']['dbdriver'] = "mysql";
+$db['dashboard']['dbprefix'] = "";
+$db['dashboard']['pconnect'] = FALSE;
+$db['dashboard']['db_debug'] = TRUE;
+$db['dashboard']['cache_on'] = FALSE;
+$db['dashboard']['cachedir'] = "";
+$db['dashboard']['char_set'] = "utf8";
+$db['dashboard']['dbcollat'] = "utf8_general_ci";
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
