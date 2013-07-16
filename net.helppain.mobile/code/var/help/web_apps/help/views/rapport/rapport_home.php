@@ -4,7 +4,7 @@ var script= document.createElement('script');
 script.setAttribute('type', 'text/javascript');
 script.setAttribute('src', '/assets/vendor/require/require.js');
 script.setAttribute('data-main', "/assets/rapport/js/home.config");
-head.appendChild(script);
+//head.appendChild(script);
 </script>
 
 <style>
@@ -221,7 +221,7 @@ head.appendChild(script);
 			}
 		});
 
-		$(".toggleOpen1").live("click", function()
+		$(".toggleOpen").live("click", function()
 		{
 			$(".ui-content").children(".checkable").each(function(index)
 			{
@@ -232,7 +232,7 @@ head.appendChild(script);
 			
 		});
 
-		$(".toggleClose1").live("click", function()
+		$(".toggleClose").live("click", function()
 		{
 			$(".ui-content").children(".checkable").each(function(index)
 			{
