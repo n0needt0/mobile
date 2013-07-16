@@ -9,11 +9,18 @@ class Rapport extends MY_Controller {
       $this->load->model('rapport_model');
     }
 
-	public function index($ptracid='123')
+	public function index($ptracid='123', $print='')
 	{
 	    $data = array('top'=>true);
 	    $data['data'] = $this->rapport_model->get_data($ptracid);
 
-		$this->load->view('rapport/rapport_home',$data);
+	    if($print == 'print')
+	    {
+	        $this->load->view('rapport/rapport_print',$data);
+	    }
+	      else
+	    {
+	        $this->load->view('rapport/rapport_home',$data);
+	    }
 	}
 }
