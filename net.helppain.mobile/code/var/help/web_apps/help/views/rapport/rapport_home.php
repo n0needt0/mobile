@@ -240,6 +240,11 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 				$(this).trigger('collapse');
 			});
 		});
+
+		$(".togglePrint").live("click", function()
+		{
+			$(document).find("*").removeClass();
+		});
 	});
 
 	$('#page').live("pageinit", function(event)
@@ -275,6 +280,9 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
     		</td>
     		<td>
     			<button data-inline="true" class="toggleClose">Collapse All</button>
+    		</td>
+    		<td>
+    			<button data-inline="true" class="togglePrint">Print</button>
     		</td>
     	</tr>
     </table>
