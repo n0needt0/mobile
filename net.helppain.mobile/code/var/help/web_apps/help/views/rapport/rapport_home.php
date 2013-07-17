@@ -246,7 +246,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	$('#page').live("pageinit", function(event)
 	{
 		$(".addMedication").click(function()
-		{
+		{<hr align="left" style="width:40%;">
 			var container = $(this);
 			while(!container.hasClass("checkable"))
 			{
@@ -592,7 +592,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
    <h3>Do you have any of these as a result of your injury/pain? <span class="checkImage"></span></h3>
    <table style="width:100%;">
    <?php
-   $pains = array('Anger', 'Fear that you will re-injure yourself', 'Unhealthy ways of coping with your pain, ie:alcohol, illiciet drugs, etc', 'Mood disturbance', 'Depression', 'Irritability', 'Emotional distress', 'Somatic preoccupation');
+   $pains = array('Anger', 'Fear that you will re-injure yourself', 'Unhealthy ways of coping with your pain, ie:alcohol, illicit drugs, etc', 'Mood disturbance', 'Depression', 'Irritability', 'Emotional distress', 'Somatic preoccupation');
    foreach($pains as $k=>$v)
    {
      $key = 'pain_'  . str_replace(' ', '_', strtolower($v));
