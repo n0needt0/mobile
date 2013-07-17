@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'trac';
-$db['default']['password'] = 'trac';
-$db['default']['database'] = 'trac';
+$db['default']['username'] = 'dashboard';
+$db['default']['password'] = 'dashboard#1';
+$db['default']['database'] = 'dashboard';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

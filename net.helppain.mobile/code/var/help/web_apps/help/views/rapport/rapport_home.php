@@ -27,36 +27,6 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 <script>
 
 	var ptracID = "NO_ID";
-
-	function updateServer(ptrac, keyvals)
-	{
-		try
-		{
-			var api_url = Help.api.home + '/rapport_api/key_data';
-			debug('list schedule api url:' + api_url);
-	    	$.ajax({
-	        	url: api_url,
-	        	type: "POST",
-	        	data: {ptracid : ptrac, newdata : keyvals},
-				dataType: "jsonp",
-				jsonp : "callback",
-				success: function(data)
-				{
-					debug(data);
-				}
-//				error: function(data)
-//				{
-//					alert('can not finish api request to ' + api_url);
-//					debug(data);
-//				}
-			});
-			debug('finished schedule api url:' + api_url);
-		}
-		catch (err)
-		{
-			debug(err);
-		}
-	}
 	
 	function clearToggle(chosenButton)
 	{
@@ -78,7 +48,29 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	function update(k, v)
 	{
 		debug(k + ", " + v);
-		return true;
+		try
+		{
+			var api_url = '/rapport_api/key_data';
+			debug('list schedule api url:' + api_url);
+	    	$.ajax({
+	        	url: api_url,
+	        	type: "POST",
+	        	data: {idWithKey : k, value : v},
+				dataType: "jsonp",
+				jsonp : "callback",
+				success: function(data)
+				{
+					debug(data);
+				}
+			});
+			debug('finished schedule api url:' + api_url);
+			return true;
+		}
+		catch (err)
+		{
+			debug(err);
+			return false;
+		}
 	}
 
 	function makeKey(base)
