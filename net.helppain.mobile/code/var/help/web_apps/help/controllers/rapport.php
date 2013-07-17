@@ -17,9 +17,10 @@ class Rapport extends MY_Controller {
 
 	    if($print == 'print')
 	    {
+	    	self::set_template('blank');
 	        $this->load->view('rapport/rapport_home_print',$data);
 	    }
-	      else
+	    else
 	    {
 	        $this->load->view('rapport/rapport_home',$data);
 	    }
