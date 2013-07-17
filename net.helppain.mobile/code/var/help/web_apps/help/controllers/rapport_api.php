@@ -51,7 +51,8 @@ Class rapport_api extends REST_Controller
 
     public function key_data_post()
     {
-        $ptracid = $this->post('idWithKey');
+    	$ptracid = $this->post('ptracid');
+        $key = $this->post('key');
         $value = $this->post('value');
 
         if( $ptracid == false || $key == false)

@@ -20,11 +20,11 @@ class Rapport_Model extends CI_Model {
       {
           if(is_array($key))
           {
-               $sql .= " WHERE thekey IN ( " . substr( implode( "','", $key ), 2, -2) . " )";
+               $sql .= " AND thekey IN ( " . substr( implode( "','", $key ), 2, -2) . " )";
           }
             else
           {
-               $sql .= " WHERE thekey = '$key'";
+               $sql .= " AND thekey = '$key'";
           }
       }
 
@@ -35,7 +35,7 @@ class Rapport_Model extends CI_Model {
               {
                   $result[$row['thekey']]= $row['thevalue'];
               }
-
+              
                return $result;
       }
       catch(Exception $e)
@@ -47,22 +47,35 @@ class Rapport_Model extends CI_Model {
 
   public function set_data($ptracid, $key, $value = false)
   {
+  	    if(!is_int((int) $ptracid) && (int) $ptracid > 0)
+  	    {
+  	    	utils::log_message('error',  "Exception: PtracID not integer, ptrac=$ptracid, key=$key, value=$value");
+          	return false;
+  	    }
+  	    
         if(empty($value))
         {
             $this->delete_data($ptracid, $key);
         }
           else
         {
-            $sql  = "INSERT INTO rapport (ptrac, thekey, thevalue ) VALUES ('$ptracid', '$key', '$value') on DUPLICATE KEY UPDATE `thevalue` = $value";
+            $sql  = "INSERT INTO rapport (ptrac, thekey, thevalue ) VALUES ('$ptracid', '$key', '$value') on DUPLICATE KEY UPDATE thevalue = '$value'";
         }
 
-        try{
+        try
+        {
             $query = $this->dashboard->query($sql);
-            return array('success'=>'true');
+            
+            if($this->dashboard->affected_rows() > 0)
+            {
+            	  return array('success'=>'true');
+            }
+            
+            return array('success'=>'false', 'query'=>$sql);
         }
         catch(Exception $e)
         {
-          utils::log_message('error',  'Exception: ',  $e->getMessage());
+          utils::log_message('error',  'Exception: '.  $e->getMessage() . 'query:' . $sql);
           return false;
         }
   }
@@ -84,7 +97,7 @@ class Rapport_Model extends CI_Model {
         }
         catch(Exception $e)
         {
-          utils::log_message('error',  'Exception: ',  $e->getMessage());
+          utils::log_message('error',  'Exception: '.  $e->getMessage());
           return false;
         }
   }

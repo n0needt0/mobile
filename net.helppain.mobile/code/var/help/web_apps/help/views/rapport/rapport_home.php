@@ -51,19 +51,18 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		try
 		{
 			var api_url = '/rapport_api/key_data';
-			debug('list schedule api url:' + api_url);
+			debug('api call url:' + api_url);
 	    	$.ajax({
 	        	url: api_url,
 	        	type: "POST",
-	        	data: {idWithKey : k, value : v},
-				dataType: "jsonp",
-				jsonp : "callback",
+	        	data: {ptracid : ptracID, key : k, value : v},
+				
 				success: function(data)
 				{
 					debug(data);
 				}
 			});
-			debug('finished schedule api url:' + api_url);
+			debug('api url:' + api_url);
 			return true;
 		}
 		catch (err)
@@ -80,7 +79,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		{
 			container = container.parent();
 		}
-		var key = ptracID + "." + container.attr("data-keyletter") + "." + $(base).attr("data-keynum");
+		var key = container.attr("data-keyletter") + "." + $(base).attr("data-keynum");
 		return key;
 	}
 
@@ -117,7 +116,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		{
 			container = container.parent();
 		}
-		var key = ptracID + "." + container.attr("data-keyletter") + ".med";
+		var key = container.attr("data-keyletter") + ".med";
 
 		container = $(base);
 		while(!container.hasClass("unstyled"))
@@ -147,10 +146,15 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	$(document).ready(function()
 	{
 		$(".ptracIn").live('focusout', function()
-		{
+		{	
 			if(!isNaN($(this).val()) && $(this).val().indexOf('.') == -1 && $(this).val().indexOf('-') == -1)
 			{
 				ptracID = $(this).val();
+			}
+			else
+			{
+				debug("PtracID: " + $(this).val() + " is not a positive integer.");
+				
 			}
 		});
 
@@ -165,6 +169,11 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		});
 
 		$(".changemeds").live('focusout', function()
+		{
+			updateMedications(this);
+		});
+
+		$(".changemeds").live('change', function()
 		{
 			updateMedications(this);
 		});

@@ -191,7 +191,7 @@ $config['log_threshold'] = 10;
 | application/logs/ folder. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '/var/log/promis/';
+$config['log_path'] = '/var/log/help.mobile/';
 
 /*
 |--------------------------------------------------------------------------
