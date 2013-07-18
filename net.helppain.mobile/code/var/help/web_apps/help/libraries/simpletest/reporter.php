@@ -113,6 +113,7 @@ class HtmlReporter extends SimpleReporter {
         $breadcrumb = $this->getTestList();
         array_shift($breadcrumb);
         print implode(" -&gt; ", $breadcrumb);
+        print "<br />";
         print " -&gt; " . $this->_htmlEntities($message) . "<br />\n";
     }
 

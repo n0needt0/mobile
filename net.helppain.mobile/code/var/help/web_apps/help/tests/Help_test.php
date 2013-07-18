@@ -1,12 +1,12 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class RapportTest extends UnitTestCase
+class Help_test extends UnitTestCase
 {
   public function __construct()
   {
       $this->CI =& get_instance();
       $this->output = false;
-      $this->CI->load->model('rapport_model');
+      $this->CI->load->model('help_model');
       $this->_coverage(__CLASS__, 'rapport_model');
   }
 

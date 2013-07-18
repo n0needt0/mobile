@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class RapportTest extends UnitTestCase
+class RapportApiTest extends UnitTestCase
 {
   public function __construct()
   {
