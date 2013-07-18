@@ -43,7 +43,7 @@ Class rapport_api extends REST_Controller
 
     public function key_data_get($ptracid=0, $key=false)
     {
-        $res =  $this->rapport_model->get_data($ptracid, $key);
+         $res =  $this->rapport_model->get_data($ptracid, $key);
 
          $this->response($res);
          die;

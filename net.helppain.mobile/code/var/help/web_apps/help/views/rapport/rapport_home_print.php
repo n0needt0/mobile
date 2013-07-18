@@ -34,7 +34,18 @@ foreach($treatments as $k=>$v)
 ?>
 <hr align="left" style="width:40%;">
 <h2>Medications Used</h2>
-<p>Not implemented yet.</p>
+<?php 
+$keys = array_keys($data);
+foreach($keys as $k=>$v)
+{
+	if(preg_match("/e\.*/", $v))
+	{
+		$medPart = substr($data[$v], 0, strrpos($data[$v], '/'));
+		$helpfulpart = substr($data[$v], strrpos($data[$v], '/') + 1);
+		echo "<p>Medication: $medPart, which was $helpfulpart.</p>";
+	}
+}
+?>
 <hr align="left" style="width:40%;">
 <h2>Miscellaneous Questions</h2>
 <?php 

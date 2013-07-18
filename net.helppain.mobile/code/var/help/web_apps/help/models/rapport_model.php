@@ -9,7 +9,7 @@ class Rapport_Model extends CI_Model {
   }
 
 
-  public function get_data($ptracid, $key = false)
+  public function get_data($ptracid, $key = false, $bypattern = false)
   {
 
       $result = array();
@@ -18,14 +18,21 @@ class Rapport_Model extends CI_Model {
 
       if(false !== $key)
       {
-          if(is_array($key))
-          {
-               $sql .= " AND thekey IN ( " . substr( implode( "','", $key ), 2, -2) . " )";
-          }
-            else
-          {
-               $sql .= " AND thekey = '$key'";
-          }
+      	  if($bypattern)
+      	  {
+      	  	$sql .= " AND thekey LIKE '$key%'";
+      	  }
+      	  else
+      	  {      	  	
+          	 if(is_array($key))
+          	 {
+           	    $sql .= " AND thekey IN ( " . substr( implode( "','", $key ), 2, -2) . " )";
+          	 }
+           	 else
+         	 {
+          	     $sql .= " AND thekey = '$key'";
+         	 }
+      	  }
       }
 
       try{
@@ -47,6 +54,7 @@ class Rapport_Model extends CI_Model {
 
   public function set_data($ptracid, $key, $value = false)
   {
+  		$sql = "";
   	    if(!is_int((int) $ptracid) && (int) $ptracid > 0)
   	    {
   	    	utils::log_message('error',  "Exception: PtracID not integer, ptrac=$ptracid, key=$key, value=$value");
@@ -55,11 +63,12 @@ class Rapport_Model extends CI_Model {
   	    
         if(empty($value))
         {
-            $this->delete_data($ptracid, $key);
+        	$this->delete_data($ptracid, $key);
+        	return array('success'=>'true');
         }
-          else
+        else
         {
-            $sql  = "INSERT INTO rapport (ptrac, thekey, thevalue ) VALUES ('$ptracid', '$key', '$value') on DUPLICATE KEY UPDATE thevalue = '$value'";
+        	$sql  = "INSERT INTO rapport (ptrac, thekey, thevalue ) VALUES ('$ptracid', '$key', '$value') on DUPLICATE KEY UPDATE thevalue = '$value'";
         }
 
         try
@@ -82,16 +91,18 @@ class Rapport_Model extends CI_Model {
 
   public function delete_data($ptracid, $key, $areyousure = false)
   {
+  		$sql = "";
         if(empty($areyousure))
         {
-            $sql = "DELETE FROM rapport WHERE ptrac = '$ptracid' AND thekey='$thekey'";
+            $sql = "DELETE FROM rapport WHERE ptrac = '$ptracid' AND thekey='$key'";
         }
         else
         {
             $sql = "DELETE FROM rapport WHERE ptrac = '$ptracid'";
         }
 
-        try{
+        try
+        {
           $query = $this->dashboard->query($sql);
           return array('success'=>'true');
         }

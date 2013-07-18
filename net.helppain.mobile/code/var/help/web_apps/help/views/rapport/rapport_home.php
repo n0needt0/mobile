@@ -116,30 +116,28 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		{
 			container = container.parent();
 		}
-		var key = container.attr("data-keyletter") + ".med";
+		var basekey = container.attr("data-keyletter") + ".";
 
 		container = $(base);
-		while(!container.hasClass("unstyled"))
+		while(!container.hasClass("box"))
 		{
 			container = container.parent();
 		}
-		var value = new Array();
-		container.find(".box").each(function(index)
+		var key = basekey + container.attr("data-keynum");
+		var value = container.find("input").val() + "/";
+		if(container.find(".helpful").hasClass("chosen"))
 		{
-			value[index] = $(this).find("input").val() + "/";
-			if($(this).find(".helpful").hasClass("chosen"))
-			{
-				value[index] += "helpful";
-			}
-			else if($(this).find(".unhelpful").hasClass("chosen"))
-			{
-				value[index] += "unhelpful";
-			}
-			else
-			{
-				value[index] += "neither";
-			}
-		});
+			value += "helpful";
+		}
+		else if(container.find(".unhelpful").hasClass("chosen"))
+		{
+			value += "unhelpful";
+		}
+		else
+		{
+			value += "neither helpful nor unhelpful";
+		}
+
 		update(key, value);
 	}
 
@@ -214,6 +212,12 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 				{
 					listItem = listItem.parent();
 				}
+				var container = listItem
+				while(!container.hasClass("checkable"))
+				{
+					container = container.parent();
+				}
+				update(container.attr("data-keyletter") + "." + listItem.find(".box").attr("data-keynum"), '');
 				listItem.remove();
 			}
 			catch(e)
@@ -246,16 +250,16 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	$('#page').live("pageinit", function(event)
 	{
 		$(".addMedication").click(function()
-		{<hr align="left" style="width:40%;">
+		{
 			var container = $(this);
 			while(!container.hasClass("checkable"))
 			{
 				container = container.parent();
 			}
 			var ul = $('ul.unstyled');
-
+			var d = new Date();
 			var newElement = "";
-			newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
+			newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div data-keynum="' + d.getTime() + '"class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
 			ul.append(newElement);
 		});
 	});
@@ -513,7 +517,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
    <div data-role="content">
    	<ul class="unstyled" data-role="listview">
    	<li class="medicationItem">
-   		<div class="box" data-role="fieldcontain" style="display:block;">
+   		<div class="box" data-role="fieldcontain" data-keynum=1 style="display:block;">
    			<button class="deleteButton" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete"></button>
    			<input class="changemeds" placeholder="Name of Medication" type="text" value=""></input>
    			<div style="display:inline-block"><button class="helpful toggle" data-inline="true" data-corners="false">Helpful</button>
