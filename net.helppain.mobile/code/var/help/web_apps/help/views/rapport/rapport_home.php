@@ -476,12 +476,10 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	</div>
 
     <label for="howdidyourinjuryoccur">How did your injury occur?</label>
-    <textarea class="changeable" data-keynum="2" name="howdidyourinjuryoccur" id="howdidyourinjuryoccur">
-    </textarea>
+    <textarea class="changeable" data-keynum="2" name="howdidyourinjuryoccur" id="howdidyourinjuryoccur"></textarea>
 
     <label for="whereisyourpainlocated">Where is your pain located?</label>
-    <textarea class="changeable" data-keynum="3" name="whereisyourpainlocated" id="whereisyourpainlocated">
-    </textarea>
+    <textarea class="changeable" data-keynum="3" name="whereisyourpainlocated" id="whereisyourpainlocated"></textarea>
 
 </div>
 
@@ -503,8 +501,8 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
        echo "<label id='slider-$key-label' class='ui-slider' for='slider-$key'>Did it help?:</label>\n";
        echo "<select id='slider-$key' class='changeable ui-slider-switch' data-keynum='".($k*2+2)."' data-role='slider' name='slider-$key'>\n";
-       echo "<option value='nope'>Nope</option>\n";
-       echo "<option value='yep'>Yep</option>\n";
+       echo "<option value='no'>No</option>\n";
+       echo "<option value='yes'>Yes</option>\n";
        echo "</select>\n";
      echo "</div>\n";
 
@@ -558,8 +556,8 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
-     echo "<option value='nope'>Nope</option>\n";
-     echo "<option value='yep'>Yep</option>\n";
+     echo "<option value='no'>No</option>\n";
+     echo "<option value='yes'>Yes</option>\n";
      echo "</select></td>\n";
      echo "</div></tr>";
    }
@@ -578,8 +576,8 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
-     echo "<option value='nope'>Nope</option>\n";
-     echo "<option value='yep'>Yep</option>\n";
+     echo "<option value='no'>No</option>\n";
+     echo "<option value='yes'>Yes</option>\n";
      echo "</select></td>\n";
      echo "</div></tr>";
    }
@@ -603,8 +601,8 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
-     echo "<option value='nope'>Nope</option>\n";
-     echo "<option value='yep'>Yep</option>\n";
+     echo "<option value='no'>No</option>\n";
+     echo "<option value='yes'>Yes</option>\n";
      echo "</select></td>\n";
      echo "</div></tr>";
    }
