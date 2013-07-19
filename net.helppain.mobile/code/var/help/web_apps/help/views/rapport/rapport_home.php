@@ -299,7 +299,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			{
 				$uppercase = ucfirst($v);
 				echo "<option value='$v'";
-				if($v == substr($data['a.2'], 0, strpos($data['a.2'], '/')))
+				if(!empty($data['a.2']) && $v == substr($data['a.2'], 0, strpos($data['a.2'], '/')))
 				{
 					echo " selected='selected'";
 				}
@@ -315,7 +315,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		    for($i=1; $i<=31; $i++)
 		    {
 		        echo "<option value='$i'";
-		        if($i == substr($data['a.2'], strpos($data['a.2'], '/') + 1, strpos($data['a.2'], '/', 1)))
+		        if(!empty($data['a.2']) && $i == substr($data['a.2'], strpos($data['a.2'], '/') + 1, strpos($data['a.2'], '/', 1)))
 		        {
 		        	echo " selected='selected'";
 		        }
@@ -331,7 +331,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		    for($i=$y; $i>=2011; $i--)
 		    {
 		        echo "<option value='$i'";
-		        if($i == substr($data['a.2'], strrpos($data['a.2'], '/') + 1))
+		        if(!empty($data['a.2']) && $i == substr($data['a.2'], strrpos($data['a.2'], '/') + 1))
 		        {
 		        	echo " selected='selected'";
 		        }
@@ -358,7 +358,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			{
 				$uppercase = ucfirst($v);
 				echo "<option value='$v'";
-				if($v == substr($data['b.1'], 0, strpos($data['b.1'], '/')))
+				if(!empty($data['b.1']) && $v == substr($data['b.1'], 0, strpos($data['b.1'], '/')))
 				{
 					echo " selected='selected'";
 				}
@@ -374,7 +374,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		    for($i=1; $i<=31; $i++)
 		    {
 		        echo "<option value='$i'";
-		        if($i == substr($data['b.1'], strpos($data['b.1'], '/') + 1, strpos($data['b.1'], '/', 1)))
+		        if(!empty($data['b.1']) && $i == substr($data['b.1'], strpos($data['b.1'], '/') + 1, strpos($data['b.1'], '/', 1)))
 		        {
 		        	echo " selected='selected'";
 		        }
@@ -391,7 +391,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		    for($i=$y; $i>($y-100);$i--)
 		    {
 		        echo "<option value='$i'";
-		        if($i == substr($data['b.1'], strrpos($data['b.1'], '/') + 1))
+		        if(!empty($data['b.1']) && $i == substr($data['b.1'], strrpos($data['b.1'], '/') + 1))
 		        {
 		        	echo " selected='selected'";
 		        }
@@ -412,7 +412,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		    for($i=3; $i<9;$i++)
 		    {
 		        echo "<option value='$i'";
-		    	if($i == substr($data['b.2'], 0, strrpos($data['b.2'], '/')))
+		    	if(!empty($data['b.2']) && $i == substr($data['b.2'], 0, strrpos($data['b.2'], '/')))
 				{
 					echo " selected='selected'";
 				}
@@ -427,12 +427,12 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			    for($i=1; $i<12; $i++)
 			    {
 			        echo "<option value='$i'";
-			    if($i == substr($data['b.2'], strrpos($data['b.2'], '/') + 1))
-		        {
-		        	echo " selected='selected'";
-		        }
+			    	if(!empty($data['b.2']) && $i == substr($data['b.2'], strrpos($data['b.2'], '/') + 1))
+		        	{
+		        		echo " selected='selected'";
+		        	}
 			        echo ">$i</option>";
-			    }
+			   	 }
 		    ?>
 
 		</select>
@@ -460,7 +460,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 				{
 					$uppercase = ucfirst($v);
 					echo "<option value='$v'";
-					if($v == substr($data['c.1'], 0, strpos($data['c.1'], '/')))
+					if(!empty($data['c.1']) && $v == substr($data['c.1'], 0, strpos($data['c.1'], '/')))
 					{
 						echo " selected='selected'";
 					}
@@ -475,7 +475,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		    for($i=1; $i<=31; $i++)
 		    {
 		        echo "<option value='$i'";
-		        if($i == substr($data['c.1'], strpos($data['c.1'], '/') + 1, strpos($data['c.1'], '/', 1)))
+		        if(!empty($data['c.1']) && $i == substr($data['c.1'], strpos($data['c.1'], '/') + 1, strpos($data['c.1'], '/', 1)))
 		        {
 		        	echo " selected='selected'";
 		        }
@@ -492,7 +492,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		    for($i=$y; $i>($y-100);$i--)
 		    {
 		        echo "<option value='$i'";
-		        if($i == substr($data['c.1'], strrpos($data['c.1'], '/') + 1))
+		        if(!empty($data['c.1']) && $i == substr($data['c.1'], strrpos($data['c.1'], '/') + 1))
 		        {
 		        	echo " selected='selected'";
 		        }
@@ -534,13 +534,13 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
        echo "<label id='slider-$key-label' class='ui-slider' for='slider-$key'>Did it help?:</label>\n";
        echo "<select id='slider-$key' class='changeable ui-slider-switch' data-keynum='".($k*2+2)."' data-role='slider' name='slider-$key'>\n";
        echo "<option value='no'";
-       if($data['d.' . ($k*2+2)] == 'no')
+       if(!empty($data['d.' . ($k*2+2)]) && $data['d.' . ($k*2+2)] == 'no')
        {
        	echo " selected='selected'";
        }
 	   echo ">No</option>\n";
        echo "<option value='yes'";
-       if($data['d.' . ($k*2+2)] == 'yes')
+       if(!empty($data['d.' . ($k*2+2)]) && $data['d.' . ($k*2+2)] == 'yes')
        {
        	echo " selected='selected'";
        }
@@ -626,13 +626,13 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
      echo "<option value='no' ";
-     if($data['g.' . ($k + 1)] == 'no')
+     if(!empty($data['g.' . ($k + 1)]) && $data['g.' . ($k + 1)] == 'no')
      {
      	echo "selected='selected'";
      }
      echo ">No</option>\n";
      echo "<option value='yes' ";
-     if($data['g.' . ($k + 1)] == 'yes')
+     if(!empty($data['g.' . ($k + 1)]) && $data['g.' . ($k + 1)] == 'yes')
      {
      	echo "selected='selected'";
      }
@@ -656,13 +656,13 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
    	 echo "<option value='no' ";
-     if($data['g.' . ($k + 1)] == 'no')
+     if(!empty($data['h.' . ($k + 1)]) && $data['h.' . ($k + 1)] == 'no')
      {
      	echo "selected='selected'";
      }
      echo ">No</option>\n";
      echo "<option value='yes' ";
-     if($data['g.' . ($k + 1)] == 'yes')
+     if(!empty($data['h.' . ($k + 1)]) && $data['h.' . ($k + 1)] == 'yes')
      {
      	echo "selected='selected'";
      }
@@ -691,13 +691,13 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
      echo "<option value='no' ";
-     if($data['g.' . ($k + 1)] == 'no')
+     if(!empty($data['i.' . ($k + 1)]) && $data['i.' . ($k + 1)] == 'no')
      {
      	echo "selected='selected'";
      }
      echo ">No</option>\n";
      echo "<option value='yes' ";
-     if($data['g.' . ($k + 1)] == 'yes')
+     if(!empty($data['i.' . ($k + 1)]) && $data['i.' . ($k + 1)] == 'yes')
      {
      	echo "selected='selected'";
      }
