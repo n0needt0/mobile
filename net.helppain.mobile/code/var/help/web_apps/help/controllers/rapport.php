@@ -9,7 +9,7 @@ class Rapport extends MY_Controller {
       $this->load->model('rapport_model');
     }
 
-	public function index($ptracid='123', $print='')
+	public function index($ptracid='99', $print='')
 	{
 	    $data = array('top'=>true);
 	    $data['ptracid'] = $ptracid;

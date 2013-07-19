@@ -26,8 +26,8 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 <script>
 
-	var ptracID = "NO_ID";
-	
+	var ptracID = "<?php echo $ptracid?>";
+
 	function clearToggle(chosenButton)
 	{
 		var cb = $(chosenButton);
@@ -56,7 +56,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	        	url: api_url,
 	        	type: "POST",
 	        	data: {ptracid : ptracID, key : k, value : v},
-				
+
 				success: function(data)
 				{
 					debug(data);
@@ -143,18 +143,6 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 	$(document).ready(function()
 	{
-		$(".ptracIn").live('focusout', function()
-		{	
-			if(!isNaN($(this).val()) && $(this).val().indexOf('.') == -1 && $(this).val().indexOf('-') == -1)
-			{
-				ptracID = $(this).val();
-			}
-			else
-			{
-				debug("PtracID: " + $(this).val() + " is not a positive integer.");
-				
-			}
-		});
 
 		$(".changeable").live('focusout', function()
 		{
@@ -234,7 +222,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 				$(this).trigger('expand');
 			});
 
-			
+
 		});
 
 		$(".toggleClose").live("click", function()
@@ -271,8 +259,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
     	<tr>
     		<td>
     			<div data-role="fieldcontain" class="ui-hide-label" style="width:80px">
-    				<label for="ptrac">ptrac id:</label>
-         			<input data-inline="true" class="ptracIn" type="text" name="ptrac" id="ptrac" value="" placeholder="Ptrac ID"/>
+         			<input type="hidden" name="ptrac" id="ptrac" value="<?php echo $ptracid;?>"/>
          		</div>
     		</td>
     		<td>
@@ -282,7 +269,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
     			<button data-inline="true" class="toggleClose">Collapse All</button>
     		</td>
     		<td>
-    			<a data-role="button" data-inline="true" href="/rapport/index/123/print">Print</a>
+    			<a data-role="button" data-inline="true" href="/rapport/index/<?php echo $ptracid;?>/print">Print</a>
     		</td>
     	</tr>
     </table>
