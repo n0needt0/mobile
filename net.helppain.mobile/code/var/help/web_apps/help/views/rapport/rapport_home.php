@@ -72,6 +72,12 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		}
 	}
 
+	function showGreenCheck(checkable) //Not finished!
+	{
+		debug("hi");
+		$(checkable).find('.checkImage').html('<img id="icon" src="/assets/images/green_check.png"/>');
+	}
+	
 	function makeKey(base)
 	{
 		var container = $(base);
@@ -80,6 +86,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			container = container.parent();
 		}
 		var key = container.attr("data-keyletter") + "." + $(base).attr("data-keynum");
+		showGreenCheck(container);
 		return key;
 	}
 
@@ -117,6 +124,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			container = container.parent();
 		}
 		var basekey = container.attr("data-keyletter") + ".";
+		showGreenCheck(container);
 
 		container = $(base);
 		while(!container.hasClass("box"))
@@ -162,11 +170,6 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		$(".changemeds").live('change', function()
 		{
 			updateMedications(this);
-		});
-
-		$(".checkable").live('expand', function()
-		{
-			$(this).find('.checkImage').html('<img id="icon" src="http://www.clker.com/cliparts/9/I/e/1/i/B/dark-green-check-mark-hi.png"/>');
 		});
 
 		$(".helpful").live('click', function()
@@ -258,7 +261,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
     <table>
     	<tr>
     		<td>
-    			<div data-role="fieldcontain" class="ui-hide-label" style="width:80px">
+    			<div data-role="fieldcontain" class="ui-hide-label" style="width:0px">
          			<input type="hidden" name="ptrac" id="ptrac" value="<?php echo $ptracid;?>"/>
          		</div>
     		</td>
@@ -280,8 +283,8 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 <div class="checkable" data-keyletter="a" data-role="collapsible">
     <h3>Call Info <span class="checkImage"></span></h3>
 	<div>
-        <label for="caller">Caller:</label>
-        <input data-keynum="1" class="changeable" type="text" name="caller" id="caller" value="" placeholder="Caller"/>
+        <label for="caller">Caller: </label>
+        <input data-keynum="1" class="changeable" type="text" name="caller" id="caller" value="<?php if(isset($data['a.1'])) echo $data['a.1']; ?>" placeholder="Caller"/>
     </div>
 
     <div>
@@ -290,19 +293,20 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		<label for="select-choice-month-dc">Month</label>
 		<select class="changeable" data-keynum="2" name="select-choice-month-dc" id="select-choice-month-dc">
-			<option value="jan">Jan</option>
-			<option value="dec">Dec</option>
-			<option value="feb">Feb</option>
-			<option value="mar">Mar</option>
-			<option value="apr">Apr</option>
-			<option value="may">May</option>
-			<option value="jun">Jun</option>
-			<option value="jul">Jul</option>
-			<option value="aug">Aug</option>
-			<option value="sep">Sep</option>
-			<option value="oct">Oct</option>
-			<option value="nov">Nov</option>
-			<option value="dec">Dec</option>
+			<?php 
+			$months = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
+			foreach($months as $k=>$v)
+			{
+				$uppercase = ucfirst($v);
+				echo "<option value='$v'";
+				if($v == substr($data['a.2'], 0, strpos($data['a.2'], '/')))
+				{
+					echo " selected='selected'";
+				}
+				echo ">$uppercase</option>\n";
+			}
+			
+			?>
 		</select>
 
 		<label for="select-choice-day-dc">Day</label>
@@ -310,16 +314,30 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			<?php
 		    for($i=1; $i<=31; $i++)
 		    {
-		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
+		        echo "<option value='$i'";
+		        if($i == substr($data['a.2'], strpos($data['a.2'], '/') + 1, strpos($data['a.2'], '/', 1)))
+		        {
+		        	echo " selected='selected'";
+		        }
+		        echo ">$i</option>";
 		    }
 		    ?>
 		</select>
 
 		<label for="select-choice-year-dc">Year</label>
 		<select class="changeable" data-keynum="2" name="select-choice-year-dc" id="select-choice-year-dc">
-			<option value="2013">2013</option>
-			<option value="2012">2012</option>
-			<option value="2011">2011</option>
+			<?php
+			$y = date("Y",time());
+		    for($i=$y; $i>=2011; $i--)
+		    {
+		        echo "<option value='$i'";
+		        if($i == substr($data['a.2'], strrpos($data['a.2'], '/') + 1))
+		        {
+		        	echo " selected='selected'";
+		        }
+		        echo ">$i</option>";
+		    }
+		    ?>
 		</select>
 	</fieldset>
 	</div>
@@ -334,28 +352,33 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		<label for="select-choice-month-dob">Month</label>
 		<select class="changeable" data-keynum="1" name="select-choice-month-dob" id="select-choice-month-dob">
-			<option value="jan">Jan</option>
-			<option value="dec">Dec</option>
-			<option value="feb">Feb</option>
-			<option value="mar">Mar</option>
-			<option value="apr">Apr</option>
-			<option value="may">May</option>
-			<option value="jun">Jun</option>
-			<option value="jul">Jul</option>
-			<option value="aug">Aug</option>
-			<option value="sep">Sep</option>
-			<option value="oct">Oct</option>
-			<option value="nov">Nov</option>
-			<option value="dec">Dec</option>
+		<?php 
+			$months = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
+			foreach($months as $k=>$v)
+			{
+				$uppercase = ucfirst($v);
+				echo "<option value='$v'";
+				if($v == substr($data['b.1'], 0, strpos($data['b.1'], '/')))
+				{
+					echo " selected='selected'";
+				}
+				echo ">$uppercase</option>\n";
+			}
+			
+		?>
 		</select>
-
+		
 		<label for="select-choice-day-dob">Day</label>
 		<select class="changeable" data-keynum="1" name="select-choice-day-dob" id="select-choice-day-dob">
-			<?php
-
+		    <?php
 		    for($i=1; $i<=31; $i++)
 		    {
-		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
+		        echo "<option value='$i'";
+		        if($i == substr($data['b.1'], strpos($data['b.1'], '/') + 1, strpos($data['b.1'], '/', 1)))
+		        {
+		        	echo " selected='selected'";
+		        }
+		        echo ">$i</option>";
 		    }
 		    ?>
 		</select>
@@ -367,7 +390,12 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		    for($i=$y; $i>($y-100);$i--)
 		    {
-		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
+		        echo "<option value='$i'";
+		        if($i == substr($data['b.1'], strrpos($data['b.1'], '/') + 1))
+		        {
+		        	echo " selected='selected'";
+		        }
+		        echo ">$i</option>";
 		    }
 		    ?>
 		</select>
@@ -380,20 +408,31 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		<label for="select-choice-ft">Feet</label>
 		<select class="changeable" data-keynum="2" name="select-choice-ft" id="select-choice-ft">
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="7">7</option>
+			<?php
+		    for($i=3; $i<9;$i++)
+		    {
+		        echo "<option value='$i'";
+		    	if($i == substr($data['b.2'], 0, strrpos($data['b.2'], '/')))
+				{
+					echo " selected='selected'";
+				}
+		        echo ">$i</option>";
+		    }
+		    ?>
 		</select>
 
 		<label for="select-choice-in">Inch</label>
 		<select class="changeable" data-keynum="2" name="select-choice-in" id="select-choice-in">
 		    <?php
-		    for($i=0; $i<12;$i++)
-		    {
-		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
-		    }
+			    for($i=1; $i<12; $i++)
+			    {
+			        echo "<option value='$i'";
+			    if($i == substr($data['b.2'], strrpos($data['b.2'], '/') + 1))
+		        {
+		        	echo " selected='selected'";
+		        }
+			        echo ">$i</option>";
+			    }
 		    ?>
 
 		</select>
@@ -402,7 +441,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
     </div>
 
       <label for="weight">Weight Lb</label>
-      <input class="changeable" data-keynum="3" type="number" name="weight" id="weight" value="" placeholder="Weight Lb"/>
+      <input class="changeable" data-keynum="3" type="number" name="weight" id="weight" value="<?php if(isset($data['b.3'])) echo $data['b.3']; ?>" placeholder="Weight Lb"/>
 
 </div>
 
@@ -415,37 +454,34 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		<label for="select-choice-month-injury">Month</label>
 		<select class="changeable" data-keynum="1" name="select-choice-month-injury" id="select-choice-month-injury">
-			<option value="jan">Jan</option>
-			<option value="dec">Dec</option>
-			<option value="feb">Feb</option>
-			<option value="mar">Mar</option>
-			<option value="apr">Apr</option>
-			<option value="may">May</option>
-			<option value="jun">Jun</option>
-			<option value="jul">Jul</option>
-			<option value="aug">Aug</option>
-			<option value="sep">Sep</option>
-			<option value="oct">Oct</option>
-			<option value="nov">Nov</option>
-			<option value="dec">Dec</option>
+			<?php 
+				$months = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
+				foreach($months as $k=>$v)
+				{
+					$uppercase = ucfirst($v);
+					echo "<option value='$v'";
+					if($v == substr($data['c.1'], 0, strpos($data['c.1'], '/')))
+					{
+						echo " selected='selected'";
+					}
+					echo ">$uppercase</option>\n";
+				}
+			?>
 		</select>
 
 		<label for="select-choice-day-injury">Day</label>
 		<select class="changeable" data-keynum="1" name="select-choice-day-injury" id="select-choice-day-injury">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">13</option>
-			<option value="13">14</option>
-			<option value="15">15</option>
+			<?php
+		    for($i=1; $i<=31; $i++)
+		    {
+		        echo "<option value='$i'";
+		        if($i == substr($data['c.1'], strpos($data['c.1'], '/') + 1, strpos($data['c.1'], '/', 1)))
+		        {
+		        	echo " selected='selected'";
+		        }
+		        echo ">$i</option>";
+		    }
+		    ?>
 		</select>
 
 		<label for="select-choice-year-injury">Year</label>
@@ -455,7 +491,12 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		    for($i=$y; $i>($y-100);$i--)
 		    {
-		        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
+		        echo "<option value='$i'";
+		        if($i == substr($data['c.1'], strrpos($data['c.1'], '/') + 1))
+		        {
+		        	echo " selected='selected'";
+		        }
+		        echo ">$i</option>";
 		    }
 		    ?>
 		</select>
@@ -463,10 +504,10 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	</div>
 
     <label for="howdidyourinjuryoccur">How did your injury occur?</label>
-    <textarea class="changeable" data-keynum="2" name="howdidyourinjuryoccur" id="howdidyourinjuryoccur"></textarea>
+    <textarea class="changeable" data-keynum="2" name="howdidyourinjuryoccur" id="howdidyourinjuryoccur"><?php if(isset($data['c.2'])) echo $data['c.2']; ?></textarea>
 
     <label for="whereisyourpainlocated">Where is your pain located?</label>
-    <textarea class="changeable" data-keynum="3" name="whereisyourpainlocated" id="whereisyourpainlocated"></textarea>
+    <textarea class="changeable" data-keynum="3" name="whereisyourpainlocated" id="whereisyourpainlocated"><?php if(isset($data['c.3'])) echo $data['c.3']; ?></textarea>
 
 </div>
 
@@ -484,12 +525,26 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
        echo "<h3>$v</h3>\n";
        echo "<label for='$key'>Details (type, #of visits, dates:</label>\n";
        echo "<textarea class='changeable' data-keynum='".($k*2+1)."' name='$key'' id='$key'>\n";
+       if(isset($data['d.' . ($k*2+1)]))
+       {
+       	echo $data['d.' . ($k*2+1)];
+       }
        echo "</textarea>\n";
 
        echo "<label id='slider-$key-label' class='ui-slider' for='slider-$key'>Did it help?:</label>\n";
        echo "<select id='slider-$key' class='changeable ui-slider-switch' data-keynum='".($k*2+2)."' data-role='slider' name='slider-$key'>\n";
-       echo "<option value='no'>No</option>\n";
-       echo "<option value='yes'>Yes</option>\n";
+       echo "<option value='no'";
+       if($data['d.' . ($k*2+2)] == 'no')
+       {
+       	echo " selected='selected'";
+       }
+	   echo ">No</option>\n";
+       echo "<option value='yes'";
+       if($data['d.' . ($k*2+2)] == 'yes')
+       {
+       	echo " selected='selected'";
+       }
+	   echo ">Yes</option>\n";
        echo "</select>\n";
      echo "</div>\n";
 
@@ -498,11 +553,34 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 </div>
 
 <div data-keyletter="e" class="checkable" data-role="collapsible">
-   <h3>What medications have you tried for your pain?<span class="checkImage"></span></h3>
+   <h3>What medications have you tried for your pain?<span class="checkImage"></span></h3> 
    <div data-role="content">
    	<ul class="unstyled" data-role="listview">
+   	
+   	<?php 
+   	
+  	 $keys = array_keys($data);
+  	 foreach($keys as $k=>$v)
+  	 {
+  	 	if(preg_match('#e\.*#', $v))
+  	 	{
+  	 		?>
+  	 			<li class="medicationItem">
+		   		<div class="box" data-role="fieldcontain" data-keynum=<?php echo substr($v, strrpos($v, '.') + 1); ?> style="display:block;">
+		   			<button class="deleteButton" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete"></button>
+		   			<input class="changemeds" placeholder="Name of Medication" type="text" value="<?php echo substr($data[$v], 0, strpos($data[$v], '/')); ?>"></input>
+		   			<div style="display:inline-block"><button class="helpful toggle <?php if(substr($data[$v], strpos($data[$v], '/') + 1) == 'helpful') echo " chosen"; ?>" data-inline="true" data-corners="false">Helpful</button>
+		   			<button class="unhelpful toggle <?php if(substr($data[$v], strpos($data[$v], '/') + 1) == 'unhelpful') echo " chosen"; ?>" data-inline="true" data-corners="false">Not Helpful</button></div>
+				</div>
+				</li>
+  	 	<?php
+  	 	}
+ 	 }
+  	?>
+   
+   	
    	<li class="medicationItem">
-   		<div class="box" data-role="fieldcontain" data-keynum=1 style="display:block;">
+   		<div class="box" data-role="fieldcontain" data-keynum=<?php echo time(); ?> style="display:block;">
    			<button class="deleteButton" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete"></button>
    			<input class="changemeds" placeholder="Name of Medication" type="text" value=""></input>
    			<div style="display:inline-block"><button class="helpful toggle" data-inline="true" data-corners="false">Helpful</button>
@@ -526,6 +604,10 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<div data-role='collapsible'>\n";
        echo "<h3>$v</h3>\n";
        echo "<textarea class='changeable' data-keynum='".($k+1)."'name='$key'' id='$key'>\n";
+       if(isset($data['f.' . ($k+1)]))
+       {
+       	echo $data['f.' . ($k+1)];
+       }
        echo "</textarea>\n";
      echo "</div>\n";
    }
@@ -543,8 +625,18 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
-     echo "<option value='no'>No</option>\n";
-     echo "<option value='yes'>Yes</option>\n";
+     echo "<option value='no' ";
+     if($data['g.' . ($k + 1)] == 'no')
+     {
+     	echo "selected='selected'";
+     }
+     echo ">No</option>\n";
+     echo "<option value='yes' ";
+     if($data['g.' . ($k + 1)] == 'yes')
+     {
+     	echo "selected='selected'";
+     }
+     echo ">Yes</option>\n";
      echo "</select></td>\n";
      echo "</div></tr>";
    }
@@ -563,8 +655,18 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
-     echo "<option value='no'>No</option>\n";
-     echo "<option value='yes'>Yes</option>\n";
+   	 echo "<option value='no' ";
+     if($data['g.' . ($k + 1)] == 'no')
+     {
+     	echo "selected='selected'";
+     }
+     echo ">No</option>\n";
+     echo "<option value='yes' ";
+     if($data['g.' . ($k + 1)] == 'yes')
+     {
+     	echo "selected='selected'";
+     }
+     echo ">Yes</option>\n";
      echo "</select></td>\n";
      echo "</div></tr>";
    }
@@ -572,7 +674,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
    <tr>
    	<td><h3>Other</h3></td>
-   	<td><textarea class="changeable" data-keynum="7"></textarea></td>
+   	<td><textarea class="changeable" data-keynum="7"><?php if(isset($data['h.7'])) echo $data['h.7']; ?></textarea></td>
    </tr>
    </table>
 </div>
@@ -588,8 +690,18 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
      echo "<tr><div class='box' data-role='fieldcontain' style='display:block;'>";
      echo "<td><h3>$v:</h3></td>";
      echo "<td><select data-keynum='".($k+1)."' style='position:relative;float:right;' id='slider-$key-difficulties' data-mini='true' class='changeable ui-slider-switch' data-role='slider' name='slider-$key'>\n";
-     echo "<option value='no'>No</option>\n";
-     echo "<option value='yes'>Yes</option>\n";
+     echo "<option value='no' ";
+     if($data['g.' . ($k + 1)] == 'no')
+     {
+     	echo "selected='selected'";
+     }
+     echo ">No</option>\n";
+     echo "<option value='yes' ";
+     if($data['g.' . ($k + 1)] == 'yes')
+     {
+     	echo "selected='selected'";
+     }
+     echo ">Yes</option>\n";
      echo "</select></td>\n";
      echo "</div></tr>";
    }

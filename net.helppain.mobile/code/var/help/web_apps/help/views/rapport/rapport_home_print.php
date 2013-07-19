@@ -38,7 +38,7 @@ foreach($treatments as $k=>$v)
 $keys = array_keys($data);
 foreach($keys as $k=>$v)
 {
-	if(preg_match("/e\.*/", $v))
+	if(preg_match("#e\.*#", $v))
 	{
 		$medPart = substr($data[$v], 0, strrpos($data[$v], '/'));
 		$helpfulpart = substr($data[$v], strrpos($data[$v], '/') + 1);
