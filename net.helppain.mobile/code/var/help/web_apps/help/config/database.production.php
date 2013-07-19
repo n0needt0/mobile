@@ -64,6 +64,7 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+
 $db['dashboard']['hostname'] = "dashboard.helppain.net";
 $db['dashboard']['username'] = "dashboard";
 $db['dashboard']['password'] = "dashboard#1";
