@@ -53,7 +53,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 	"Scala",
 	"Scheme"
 	];
-	
+
 	function clearToggle(chosenButton)
 	{
 		var cb = $(chosenButton);
@@ -103,7 +103,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		debug("hi");
 		$(checkable).find('.checkImage').html('<img id="icon" src="/assets/images/green_check.png"/>');
 	}
-	
+
 	function makeKey(base)
 	{
 		var container = $(base);
@@ -174,31 +174,31 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		update(key, value);
 	}
-	
+
 	$(document).ready(function()
 	{
 
-		$(".changeable").live('focusout', function()
+		$(".changeable").on('focusout', function()
 		{
 			updateVal(this);
 		});
 
-		$(".changeable").live('change', function()
+		$(".changeable").on('change', function()
 		{
 			updateVal(this);
 		});
 
-		$(".changemeds").live('focusout', function()
+		$(".changemeds").on('focusout', function()
 		{
 			updateMedications(this);
 		});
 
-		$(".changemeds").live('change', function()
+		$(".changemeds").on('change', function()
 		{
 			updateMedications(this);
 		});
 
-		$(".helpful").live('click', function()
+		$(".helpful").on('click', function()
 		{
 			var has = $(this).hasClass("chosen");
 			clearToggle(this);
@@ -209,7 +209,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			updateMedications(this);
 		});
 
-		$(".unhelpful").live("click", function()
+		$(".unhelpful").on("click", function()
 		{
 			var has = $(this).hasClass("chosen");
 			clearToggle(this);
@@ -220,7 +220,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			updateMedications(this);
 		});
 
-		$(".deleteButton").live("click", function()
+		$(".deleteButton").on("click", function()
 		{
 			try
 			{
@@ -243,7 +243,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			}
 		});
 
-		$(".toggleOpen").live("click", function()
+		$(".toggleOpen").on("click", function()
 		{
 			$(".ui-content").children(".checkable").each(function(index)
 			{
@@ -254,7 +254,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		});
 
-		$(".toggleClose").live("click", function()
+		$(".toggleClose").on("click", function()
 		{
 			$(".ui-content").children(".checkable").each(function(index)
 			{
@@ -264,8 +264,9 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 		});
 	});
 
-	$('#page').live("pageinit", function(event)
+	$('#page').on("pageinit", function(event)
 	{
+
 		$(".addMedication").click(function()
 		{
 			var container = $(this);
@@ -276,16 +277,14 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			var ul = $('ul.unstyled');
 			var d = new Date();
 			var newElement = "";
-			newElement += '<li class="medicationComplete medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div data-keynum="' + d.getTime() + '"class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
+			newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div data-keynum="' + d.getTime() + '"class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
 			ul.append(newElement);
+		});
 
-			$('.medicationComplete').each(function(index)
-			{
-				$(this).autocomplete
-				({
-					source: medicationValues
-				});
-			});
+		$('#testMed').autocomplete({
+		    source: medicationValues,
+		    minLength: 1,
+		    select: function (event, ui) {debug('selected');}
 		});
 	});
 </script>
@@ -327,7 +326,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		<label for="select-choice-month-dc">Month</label>
 		<select class="changeable" data-keynum="2" name="select-choice-month-dc" id="select-choice-month-dc">
-			<?php 
+			<?php
 			$months = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
 			foreach($months as $k=>$v)
 			{
@@ -339,7 +338,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 				}
 				echo ">$uppercase</option>\n";
 			}
-			
+
 			?>
 		</select>
 
@@ -386,7 +385,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		<label for="select-choice-month-dob">Month</label>
 		<select class="changeable" data-keynum="1" name="select-choice-month-dob" id="select-choice-month-dob">
-		<?php 
+		<?php
 			$months = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
 			foreach($months as $k=>$v)
 			{
@@ -398,10 +397,10 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 				}
 				echo ">$uppercase</option>\n";
 			}
-			
+
 		?>
 		</select>
-		
+
 		<label for="select-choice-day-dob">Day</label>
 		<select class="changeable" data-keynum="1" name="select-choice-day-dob" id="select-choice-day-dob">
 		    <?php
@@ -488,7 +487,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		<label for="select-choice-month-injury">Month</label>
 		<select class="changeable" data-keynum="1" name="select-choice-month-injury" id="select-choice-month-injury">
-			<?php 
+			<?php
 				$months = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
 				foreach($months as $k=>$v)
 				{
@@ -587,12 +586,12 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 </div>
 
 <div data-keyletter="e" class="checkable" data-role="collapsible">
-   <h3>What medications have you tried for your pain?<span class="checkImage"></span></h3> 
+   <h3>What medications have you tried for your pain?<span class="checkImage"></span></h3>
    <div data-role="content">
    	<ul class="unstyled" data-role="listview">
-   	
-   	<?php 
-   	
+
+   	<?php
+
   	 $keys = array_keys($data);
   	 foreach($keys as $k=>$v)
   	 {
@@ -611,12 +610,12 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
   	 	}
  	 }
   	?>
-   
-   	
+
+
    	<li class="medicationItem">
    		<div class="box" data-role="fieldcontain" data-keynum=<?php echo time(); ?> style="display:block;">
    			<button class="deleteButton" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete"></button>
-   			<input class="changemeds medicationComplete" placeholder="Name of Medication" type="text" value=""></input>
+   			<input class="changemeds medicationComplete" id='testMed' placeholder="Name of Medication" type="text" value=""></input>
    			<div style="display:inline-block"><button class="helpful toggle" data-inline="true" data-corners="false">Helpful</button>
    			<button class="unhelpful toggle" data-inline="true" data-corners="false">Not Helpful</button></div>
 		</div>

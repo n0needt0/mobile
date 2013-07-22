@@ -35,8 +35,12 @@
 	<!-- Custom css -->
 	<link rel="stylesheet" href="/assets/mobile/css/custom.css" />
 
+	<link rel="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	<!-- js libs-->
-	<script src="/assets/vendor/mobile/jquery-1.8.2-min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 	<script src="/assets/vendor/mobile/jquery.mobile-1.3.0.min.js"></script>
 	<script src="/assets/vendor/mobile/ios-orientationchange-fix.min.js"></script>
 	<script src="/assets/vendor/mobile/cordova-2.5.0.js"></script>
