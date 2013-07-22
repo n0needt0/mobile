@@ -39,3 +39,4 @@
 */
 
 $route['default_controller'] = "mhome";
+$route['scaffolding_trigger'] = "";
