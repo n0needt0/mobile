@@ -28,6 +28,32 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 	var ptracID = "<?php echo $ptracid?>";
 
+	var medicationValues =
+	[
+	"ActionScript",
+	"AppleScript",
+	"Asp",
+	"BASIC",
+	"C",
+	"C++",
+	"Clojure",
+	"COBOL",
+	"ColdFusion",
+	"Erlang",
+	"Fortran",
+	"Groovy",
+	"Haskell",
+	"Java",
+	"JavaScript",
+	"Lisp",
+	"Perl",
+	"PHP",
+	"Python",
+	"Ruby",
+	"Scala",
+	"Scheme"
+	];
+	
 	function clearToggle(chosenButton)
 	{
 		var cb = $(chosenButton);
@@ -148,7 +174,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 
 		update(key, value);
 	}
-
+	
 	$(document).ready(function()
 	{
 
@@ -250,8 +276,16 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
 			var ul = $('ul.unstyled');
 			var d = new Date();
 			var newElement = "";
-			newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div data-keynum="' + d.getTime() + '"class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
+			newElement += '<li class="medicationComplete medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div data-keynum="' + d.getTime() + '"class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
 			ul.append(newElement);
+
+			$('.medicationComplete').each(function(index)
+			{
+				$(this).autocomplete
+				({
+					source: medicationValues
+				});
+			});
 		});
 	});
 </script>
@@ -582,7 +616,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
    	<li class="medicationItem">
    		<div class="box" data-role="fieldcontain" data-keynum=<?php echo time(); ?> style="display:block;">
    			<button class="deleteButton" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete"></button>
-   			<input class="changemeds" placeholder="Name of Medication" type="text" value=""></input>
+   			<input class="changemeds medicationComplete" placeholder="Name of Medication" type="text" value=""></input>
    			<div style="display:inline-block"><button class="helpful toggle" data-inline="true" data-corners="false">Helpful</button>
    			<button class="unhelpful toggle" data-inline="true" data-corners="false">Not Helpful</button></div>
 		</div>
