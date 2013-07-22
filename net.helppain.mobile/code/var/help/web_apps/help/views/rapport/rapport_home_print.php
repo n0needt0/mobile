@@ -8,18 +8,18 @@
 <h1>Data for: Greg Smith</h1>
 <hr align="left" style="width:40%;">
 <h2>Call Info</h2>
-<p><?php echo "Caller Name: " . $data['a.1'] ?></p>
-<p><?php echo "Date of Call: " . ucfirst($data['a.2']) ?></p>
+<p><?php echo "Caller Name: " . (array_key_exists('a.1', $data) ? $data['a.1'] : "Not filled out") ?></p>
+<p><?php echo "Date of Call: " . (array_key_exists('a.2', $data) ? ucfirst($data['a.2']) : "Not filled out") ?></p>
 <hr align="left" style="width:40%;">
 <h2>Patient Info</h2>
-<p><?php echo "Date of Birth: " . ucfirst($data['b.1']) ?></p>
-<p><?php echo "Height: " . substr($data['b.2'], 0, 1) . "'" . substr($data['b.2'], 1, strlen($data['b.2'])) . '"' ?></p>
-<p><?php echo "Weight: " . $data['b.3'] . " pounds" ?></p>
+<p><?php echo "Date of Birth: " . (array_key_exists('b.1', $data) ? ucfirst($data['b.1']) : "Not filled out") ?></p>
+<p><?php echo "Height: " . (array_key_exists('b.2', $data) ? substr($data['b.2'], 0, 1) . "'" . substr($data['b.2'], 1, strlen($data['b.2'])) . '"' : "Not filled out") ?></p>
+<p><?php echo "Weight: " . (array_key_exists('b.3', $data) ? $data['b.3'] . " pounds" : "Not filled out") ?></p>
 <hr align="left" style="width:40%;">
 <h2>Injury History</h2>
-<p><?php echo "Injury Date: " . ucfirst($data['c.1']) ?></p>
-<p><?php echo "Cause of Injury: " . $data['c.2'] ?></p>
-<p><?php echo "Location of Injury: " . $data['c.3'] ?></p>
+<p><?php echo "Injury Date: " . (array_key_exists('c.1', $data) ? ucfirst($data['c.1']) : "Not filled out") ?></p>
+<p><?php echo "Cause of Injury: " . (array_key_exists('c.2', $data) ? $data['c.2'] : "Not filled out") ?></p>
+<p><?php echo "Location of Injury: " . (array_key_exists('c.3', $data) ? $data['c.3'] : "Not filled out") ?></p>
 <hr align="left" style="width:40%;">
 <h2>Procedures for Pain</h2>
 <?php 
@@ -27,8 +27,8 @@ $treatments = array('Surgery', 'Physical Therapy', 'Acupuncture','Chiropractic t
 foreach($treatments as $k=>$v)
 {
 	$keynum=($k*2+1);
-	$value1=$data['d'. '.' . $keynum];
-	$value2=$data['d'. '.' . ($keynum + 1)];
+	$value1=array_key_exists('d'. '.' . $keynum, $data) ? $data['d'. '.' . $keynum] : "Not filled out";
+	$value2=array_key_exists('d'. '.' . $keynum + 1, $data) ? $data['d'. '.' . $keynum] : "Not filled out";
 	echo "<p>$v: $value1 -> Was it helpful? $value2</p>";
 }
 ?>
@@ -53,7 +53,7 @@ $questions = array('Have you had any adverse effects from any medications you ha
 foreach($questions as $k=>$v)
 {
 	$keynum=($k+1);
-	$value1=$data['f'. '.' . $keynum];
+	$value1=array_key_exists('f'. '.' . $keynum, $data) ? $data['f'. '.' . $keynum] : "Not filled out";
 	echo "<p>$v $value1</p>";
 }
 ?>
@@ -64,7 +64,7 @@ $effects = array('Dress', 'Groom', 'Bathe', 'Do home duties', 'Provide childcare
 foreach($effects as $k=>$v)
 {
 	$keynum=($k+1);
-	$value1=$data['g'. '.' . $keynum];
+	$value1=array_key_exists('g'. '.' . $keynum, $data) ? $data['g'. '.' . $keynum] : "Not filled out";
 	echo "<p>$v: $value1</p>";
 }
 ?>
@@ -75,7 +75,7 @@ $goals = array('Increase your function', 'Medication reduction/optimization', 'B
 foreach($goals as $k=>$v)
 {
 	$keynum=($k+1);
-	$value1=$data['h'. '.' . $keynum];
+	$value1=array_key_exists('h'. '.' . $keynum, $data) ? $data['h'. '.' . $keynum] : "Not filled out";
 	echo "<p>$v: $value1</p>";
 }
 ?>
@@ -86,7 +86,7 @@ $pains = array('Anger', 'Fear that you will re-injure yourself', 'Unhealthy ways
 foreach($pains as $k=>$v)
 {
 	$keynum=($k+1);
-	$value1=$data['i'. '.' . $keynum];
+	$value1=array_key_exists('i'. '.' . $keynum, $data) ? $data['i'. '.' . $keynum] : "Not filled out";
 	echo "<p>$v: $value1</p>";
 }
 ?>
