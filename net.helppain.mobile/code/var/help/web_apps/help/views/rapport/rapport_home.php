@@ -1,12 +1,3 @@
-<script>
-var head= document.getElementsByTagName('head')[0];
-var script= document.createElement('script');
-script.setAttribute('type', 'text/javascript');
-script.setAttribute('src', '/assets/vendor/require/require.js');
-script.setAttribute('data-main', "/assets/rapport/js/home.config");
-//head.appendChild(script);
-</script>
-
 <style>
     #icon
     {
@@ -215,27 +206,7 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
             updateMedications(this);
         });
 
-        $(".helpful").on('click', function()
-        {
-            var has = $(this).hasClass("chosen");
-            clearToggle(this);
-            if(!has)
-            {
-                $(this).addClass("chosen");
-            }
-            updateMedications(this);
-        });
 
-        $(".unhelpful").on("click", function()
-        {
-            var has = $(this).hasClass("chosen");
-            clearToggle(this);
-            if(!has)
-            {
-                $(this).addClass("chosen");
-            }
-            updateMedications(this);
-        });
 
         $(".deleteButton").on("click", function()
         {
@@ -293,15 +264,49 @@ script.setAttribute('data-main', "/assets/rapport/js/home.config");
             }
             var ul = $('ul.unstyled');
             var d = new Date();
+            var addedlast = d.getTime();
+
+            debug(addedlast);
+
             var newElement = "";
-            newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div data-keynum="' + d.getTime() + '"class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div><div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span><button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
+            newElement += '<li class="medicationItem ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child"><div data-keynum="' + addedlast +
+            '" class="box ui-field-contain ui-body ui-br" data-role="fieldcontain" style="display:block;">' +
+            ' <div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="delete" data-iconpos="notext" data-theme="c" data-inline="true" data-mini="true" data-disabled="false" title="" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext" aria-disabled="false">'+
+            '<span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span><button class="deleteButton ui-btn-hidden" data-mini="true" data-inline="true" data-iconpos="notext" data-icon="delete" data-disabled="false"></button></div>'+
+            '<div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input class="changemeds added' + addedlast + ' ui-input-text ui-body-c" placeholder="Name of Medication" type="text" value=""></div><div style="display:inline-block"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Helpful</span></span><button class="helpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Helpful</button></div><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" data-inline="true" data-disabled="false" class="ui-btn ui-btn-up-c ui-shadow ui-btn-inline" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Not Helpful</span></span>'+
+            '<button class="unhelpful toggle ui-btn-hidden" data-inline="true" data-corners="false" data-disabled="false">Not Helpful</button></div></div></div></li>';
             ul.append(newElement);
+
+            $('.added' + addedlast).focus();
 
             $('.changemeds').autocomplete({
                 source: medicationValues,
                 minLength: 2,
                 select: function (event, ui) {debug('selected');}
             });
+
+
+            $(".helpful").on('click', function()
+                    {
+                        var has = $(this).hasClass("chosen");
+                        clearToggle(this);
+                        if(!has)
+                        {
+                            $(this).addClass("chosen");
+                        }
+                        updateMedications(this);
+                    });
+
+            $(".unhelpful").on("click", function()
+                    {
+                        var has = $(this).hasClass("chosen");
+                        clearToggle(this);
+                        if(!has)
+                        {
+                            $(this).addClass("chosen");
+                        }
+                        updateMedications(this);
+                    });
         });
 
 
