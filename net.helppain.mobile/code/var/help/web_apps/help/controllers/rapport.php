@@ -14,6 +14,7 @@ class Rapport extends MY_Controller {
 	    $data = array('top'=>true);
 	    $data['ptracid'] = $ptracid;
 	    $data['data'] = $this->rapport_model->get_data($ptracid);
+	    $data['ptrac'] = $this->rapport_model->get_ptrac($ptracid);
 
 	    if($print == 'print')
 	    {

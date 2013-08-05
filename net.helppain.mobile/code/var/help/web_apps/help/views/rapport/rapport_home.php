@@ -336,7 +336,7 @@
         </tr>
     </table>
 
-    <h1>Patient Name</h1>
+    <h1><?php echo $ptrac['summary'];?></h1>
 </div>
 
 <div class="checkable" data-keyletter="a" data-role="collapsible">

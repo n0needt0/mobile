@@ -4,8 +4,32 @@ class Rapport_Model extends CI_Model {
 
  public function __construct()
   {
-    parent::__construct();
-    $this->dashboard = $this->load->database('dashboard', true);
+      parent::__construct();
+      $this->dashboard = $this->load->database('dashboard', true);
+      $this->ptrac = $this->load->database('ptrac', true);
+  }
+
+  public function get_ptrac($ptracid)
+  {
+      $sql = "SELECT * FROM ticket WHERE id ='$ptracid'";
+      $result = array('summary'=>'NOT FOUND');
+
+      try{
+          $query = $this->ptrac->query($sql);
+
+          foreach ($query->result_array() as $row)
+          {
+              $result =  $row;
+          }
+          return $result;
+      }
+      catch(Exception $e)
+      {
+          utils::log_message('error',  'Exception: ',  $e->getMessage());
+          return false;
+      }
+
+
   }
 
 
@@ -23,7 +47,7 @@ class Rapport_Model extends CI_Model {
       	  	$sql .= " AND thekey LIKE '$key%'";
       	  }
       	  else
-      	  {      	  	
+      	  {
           	 if(is_array($key))
           	 {
            	    $sql .= " AND thekey IN ( " . substr( implode( "','", $key ), 2, -2) . " )";
@@ -42,7 +66,7 @@ class Rapport_Model extends CI_Model {
               {
                   $result[$row['thekey']]= $row['thevalue'];
               }
-              
+
                return $result;
       }
       catch(Exception $e)
@@ -60,7 +84,7 @@ class Rapport_Model extends CI_Model {
   	    	utils::log_message('error',  "Exception: PtracID not integer, ptrac=$ptracid, key=$key, value=$value");
           	return false;
   	    }
-  	    
+
         if(empty($value))
         {
         	$this->delete_data($ptracid, $key);
@@ -74,12 +98,12 @@ class Rapport_Model extends CI_Model {
         try
         {
             $query = $this->dashboard->query($sql);
-            
+
             if($this->dashboard->affected_rows() > 0)
             {
             	  return array('success'=>'true');
             }
-            
+
             return array('success'=>'false', 'query'=>$sql);
         }
         catch(Exception $e)

@@ -78,5 +78,18 @@ $db['dashboard']['cachedir'] = "";
 $db['dashboard']['char_set'] = "utf8";
 $db['dashboard']['dbcollat'] = "utf8_general_ci";
 
+$db['ptrac']['hostname'] = "ptrac.helppain.net";
+$db['ptrac']['username'] = "trac";
+$db['ptrac']['password'] = "trac";
+$db['ptrac']['database'] = "ptrac";
+$db['ptrac']['dbdriver'] = "mysql";
+$db['ptrac']['dbprefix'] = "";
+$db['ptrac']['pconnect'] = FALSE;
+$db['ptrac']['db_debug'] = TRUE;
+$db['ptrac']['cache_on'] = FALSE;
+$db['ptrac']['cachedir'] = "";
+$db['ptrac']['char_set'] = "utf8";
+$db['ptrac']['dbcollat'] = "utf8_general_ci";
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
